@@ -75,4 +75,71 @@ nav:
   - "皮肤 Mod 制作":
     - "Graphics Dump": "shared/graphics_dump.md"
   - "Code Mod 制作":
-    - "环境配置": "code_modding/env.md"
+    - 首页: "code_modding/index.md"
+    - 推荐入门顺序:
+        - Celeste, Everest, MonoMod: "code_modding/basics/celeste_everest_monomod.md"
+        - 基础环境配置: "code_modding/coding_setup/basic_env.md"
+        - 钩子: "code_modding/hooks/hook.md"
+        - 阅读代码: "code_modding/coding_setup/code_reading.md"
+        - 简单自定义实体: "code_modding/coding_challenges/simple_entity.md"
+        - 简单自定义Trigger: "code_modding/coding_challenges/simple_trigger.md"
+        - 简单贴图: "code_modding/coding_challenges/simple_texturing.md"
+    - 一些准备:
+        - 基础环境配置: "code_modding/coding_setup/basic_env.md"
+        - 调试: "code_modding/coding_setup/debug.md"
+        - 阅读代码: "code_modding/coding_setup/code_reading.md"
+    - 基础:
+        - Celeste, Everest, MonoMod: "code_modding/basics/celeste_everest_monomod.md"
+        - 更多EC: "code_modding/basics/ec_common.md"
+        - Flag, Tag, Tracker: "code_modding/basics/flag_tag_tracker.md"
+        - Session, Settings, SaveData: "code_modding/basics/session_settings_savedata.md"
+    - 进阶:
+        - 跨 Mod 交互: "code_modding/advanced/cross_mod_interactions.md"
+    # - Loenn:
+    #     - Loenn 目录结构: "loenn/folder_structure.md"
+    #     - Loenn 基础配置: "loenn/basic_configurations.md"
+    #     - Entity 结构: "loenn/entity_structs.md" 
+    #     - Trigger 结构: "loenn/trigger_structs.md"
+    #     - Loenn 绘制: "loenn/rendering.md"
+    #     - Loenn 节点: "loenn/nodes.md"
+    #     - Effect 结构: "loenn/effect_structs.md"
+    - 实战:
+        - 测试地图: "code_modding/coding_challenges/test_map.md"
+        - 简单自定义实体: "code_modding/coding_challenges/simple_entity.md"
+        - 简单自定义Trigger: "code_modding/coding_challenges/simple_trigger.md"
+        - 简单贴图: "code_modding/coding_challenges/simple_texturing.md"
+    - 钩子:
+        - 钩子: "code_modding/hooks/hook.md"
+        - IL: "code_modding/hooks/il.md"
+        - IL 钩子与随意钩取: "code_modding/hooks/adv_hooks.md"
+        - 协程的钩取与私有成员访问: "code_modding/hooks/adv_hooks2.md"     
+    - 组件:
+        - Sprite, Image: "code_modding/components/sprite_image.md"
+        - Alarm, Tween, Coroutine: "code_modding/components/alarm_tween_coroutine.md"  
+        - StateMachine: "code_modding/components/statemachine.md"    
+    - 额外:
+        - FAQ: "code_modding/extra/faq.md"
+        - XML:
+          - XML 简单介绍: "code_modding/extra/xml/xml_speedrun.md"
+        - Lua:
+          - 开始: "code_modding/extra/lua/begin.md"
+          - 基本语法: "code_modding/extra/lua/syntax.md"
+          - 数据类型: "code_modding/extra/lua/data_type.md"
+          - 流程控制: "code_modding/extra/lua/control_flow.md"
+          - 运算符: "code_modding/extra/lua/operator.md"
+          - 迭代器: "code_modding/extra/lua/iterator.md"
+          - 模块: "code_modding/extra/lua/module.md"
+          - 标准库: "code_modding/extra/lua/standard_library.md"
+        - LuaCutscene:
+          - 开始: "code_modding/extra/lua_cutscene/begin.md"
+          - 参考: "code_modding/extra/lua_cutscene/reference.md"
+          - C# 交互: "code_modding/extra/lua_cutscene/cs_access.md"
+          - 例子: "code_modding/extra/lua_cutscene/examples.md"
+    - 历史归档:
+        - 基础环境配置: "code_modding/arc/basic_env.md"
+        - 通过模板创建项目: "code_modding/arc/project_template.md"
+        - 偏好: "code_modding/arc/preference.md"
+        - 偏好-sdk-styled-proj: "code_modding/arc/sdk-styled-proj.md"
+    - 杂项:
+        - ChangeLog: "code_modding/misc/change_log.md"
+        - ToDoList: "code_modding/misc/to_do_list.md"
