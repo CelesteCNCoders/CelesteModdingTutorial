@@ -94,22 +94,25 @@ nav:
         - Flag, Tag, Tracker: "code_modding/basics/flag_tag_tracker.md"
         - Session, Settings, SaveData: "code_modding/basics/session_settings_savedata.md"
     - 进阶:
+        # - 进阶渲染:
+        #     - SpriteBatch: "code_modding/advanced/rendering/sprite_batch.md"
+        #     - VirtualRenderTarget: "code_modding/advanced/rendering/virtual_render_target.md"
+        #     - Effect: "code_modding/advanced/rendering/effect.md"
         - 跨 Mod 交互: "code_modding/advanced/cross_mod_interactions.md"
     # - Loenn:
-    #     - Loenn 目录结构: "loenn/folder_structure.md"
-    #     - Loenn 基础配置: "loenn/basic_configurations.md"
-    #     - Entity 结构: "loenn/entity_structs.md" 
-    #     - Trigger 结构: "loenn/trigger_structs.md"
-    #     - Loenn 绘制: "loenn/rendering.md"
-    #     - Loenn 节点: "loenn/nodes.md"
-    #     - Effect 结构: "loenn/effect_structs.md"
+    #     - 开始: "code_modding/loenn/begin.md"
+    #     - 目录结构: "code_modding/loenn/folder_structure.md"
+    #     - Entity 结构: "code_modding/loenn/entity_structs.md" 
+    #     - Trigger 结构: "code_modding/loenn/trigger_structs.md"
+    #     - 绘制: "code_modding/loenn/rendering.md"
     - 实战:
         - 测试地图: "code_modding/coding_challenges/test_map.md"
         - 简单自定义实体: "code_modding/coding_challenges/simple_entity.md"
         - 简单自定义Trigger: "code_modding/coding_challenges/simple_trigger.md"
         - 简单贴图: "code_modding/coding_challenges/simple_texturing.md"
+        # - 简单自定义组件: "code_modding/coding_challenges/simple_component.md"
     - 钩子:
-        - 钩子: "code_modding/hooks/hook.md"
+        - 钩子: "code_modding/hooks/hook.md" 
         - IL: "code_modding/hooks/il.md"
         - IL 钩子与随意钩取: "code_modding/hooks/adv_hooks.md"
         - 协程的钩取与私有成员访问: "code_modding/hooks/adv_hooks2.md"     
