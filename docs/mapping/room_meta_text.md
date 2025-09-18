@@ -521,7 +521,7 @@ maddiehelpinghand_chapternumber_ThisIsMyName_MyFirstMod_0_MyFirstMap= 章节01
 ```
 *ThisIsMyName_MyFirstMod_0_MyFirstMap 对应文件路径 ThisIsMyName/MyFirstMod/0-MyFirstMap.bin*
 
-设置完成后你会发现在原版游戏地图中的`第1章`字样变成了你设置的`章节01`，在有一些情况下，这种独特的章节序号文字可以辅助你表达你的地图名字的特别之处，例如`xxx竞赛-比赛用图`。
+设置完成后你会发现在原版游戏地图中的`第1章`字样变成了设置的`章节01`，在一些情况下，这种独特的章节序号文字可以辅助你表达你的地图名字的特别之处，例如`xxx竞赛-比赛用图`。
 
 `Everest` 会参照文件夹路径生成一个键名，但是会将所有空白字符 ` `，连字符 `-`，斜杠 `/`，加号 `+` 全部转换为下滑线 `_`，就如上面的 `ThisIsMyName/MyFirstMod/0-MyFirstMap.bin` 就被转换为了 `ThisIsMyName_MyFirstMod_0_MyFirstMap`。  
 
