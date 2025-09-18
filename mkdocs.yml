@@ -76,18 +76,19 @@ nav:
     - "Graphics Dump": "shared/graphics_dump.md"
   - "Code Mod 制作":
     - 首页: "code_modding/index.md"
-    # - 推荐入门顺序:
-    #     - Celeste, Everest, MonoMod: "code_modding/basics/core_system_monomod.md"
-    #     - 基础环境配置: "code_modding/coding_setup/basic_env.md"
-    #     - 钩子: "code_modding/hooks/hook.md"
-    #     - 阅读代码: "code_modding/coding_setup/code_reading.md"
-    #     - 简单自定义实体: "code_modding/coding_challenges/simple_entity.md"
-    #     - 简单自定义Trigger: "code_modding/coding_challenges/simple_trigger.md"
-    #     - 简单贴图: "code_modding/coding_challenges/simple_texturing.md"
+    - 推荐入门顺序:
+        - 前言: "code_modding/basics/index.md"
+        - 基础环境配置: "code_modding/coding_setup/basic_env.md"
+        - 阅读代码: "code_modding/coding_setup/code_reading.md"
+        - 调试: "code_modding/coding_setup/debug.md"
+        - On 钩子: "code_modding/advanced/hooks/on_hook.md"
+        - 简单自定义实体: "code_modding/coding_challenges/simple_entity.md"
+        - 简单自定义Trigger: "code_modding/coding_challenges/simple_trigger.md"
+        - 简单贴图: "code_modding/coding_challenges/simple_texturing.md"
     - 一些准备:
         - 基础环境配置: "code_modding/coding_setup/basic_env.md"
-        - 调试: "code_modding/coding_setup/debug.md"
         - 阅读代码: "code_modding/coding_setup/code_reading.md"
+        - 调试: "code_modding/coding_setup/debug.md"
     - 基础:
         - 前言: "code_modding/basics/index.md"
         - 游戏框架:
@@ -112,15 +113,15 @@ nav:
             - 前言: "code_modding/advanced/hooks/index.md"
             - On 钩子: "code_modding/advanced/hooks/on_hook.md"
             - IL: "code_modding/advanced/hooks/il.md"
-            - IL 钩子: "code_modding/advanced/hooks/il_hook.md"
             - IL 指令速查表: "code_modding/advanced/hooks/il_instructions.md"
+            - IL 钩子: "code_modding/advanced/hooks/il_hook.md"
             - 协程钩取: "code_modding/advanced/hooks/coroutine_hooking.md"
+        - 私有访问: "code_modding/advanced/private_access.md"
+        - 跨 Mod 交互: "code_modding/advanced/cross_mod_interaction.md"
         - 进阶渲染:
             - SpriteBatch: "code_modding/advanced/rendering/sprite_batch.md"
             - VirtualRenderTarget: "code_modding/advanced/rendering/virtual_render_target.md"
             - Effect: "code_modding/advanced/rendering/effect.md"
-        - 跨 Mod 交互: "code_modding/advanced/cross_mod_interaction.md"
-        - 私有访问: "code_modding/advanced/private_access.md"
     - Loenn:
         - 开始: "code_modding/loenn/begin.md"
         - 目录结构: "code_modding/loenn/folder_structure.md"
@@ -132,8 +133,14 @@ nav:
             - Player: "code_modding/wiki/entity/player.md"
         - 组件:
             - Sprite, Image: "code_modding/wiki/component/sprite_image.md"
-            - Alarm, Tween, Coroutine: "code_modding/wiki/component/alarm_tween_coroutine.md"  
-            - StateMachine: "code_modding/wiki/component/statemachine.md"   
+            - Tween: "code_modding/wiki/component/tween.md"  
+            - Coroutine: "code_modding/wiki/component/coroutine.md"  
+            - Alarm: "code_modding/wiki/component/alarm.md"  
+            - StaticMover: "code_modding/wiki/component/static_mover.md" 
+            - StateMachine: "code_modding/wiki/component/statemachine.md"  
+            - Holdable: "code_modding/wiki/component/holdable.md"
+            - BloomPoint, VertexLight: code_modding/wiki/component/bloompoint_vertaxlight.md
+            - SoundSource: "code_modding/wiki/component/sound_source.md"
         - Level: "code_modding/wiki/level.md"
     - 实战:
         - 测试地图: "code_modding/coding_challenges/test_map.md"
