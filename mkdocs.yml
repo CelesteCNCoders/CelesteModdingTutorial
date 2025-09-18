@@ -139,7 +139,7 @@ nav:
             - StaticMover: "code_modding/wiki/component/static_mover.md" 
             - StateMachine: "code_modding/wiki/component/statemachine.md"  
             - Holdable: "code_modding/wiki/component/holdable.md"
-            - BloomPoint, VertexLight: code_modding/wiki/component/bloompoint_vertaxlight.md
+            - BloomPoint, VertexLight: "code_modding/wiki/component/bloompoint_vertaxlight.md"
             - SoundSource: "code_modding/wiki/component/sound_source.md"
         - Level: "code_modding/wiki/level.md"
     - 实战:
