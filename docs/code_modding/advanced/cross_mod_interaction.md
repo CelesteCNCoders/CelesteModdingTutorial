@@ -321,7 +321,7 @@ public class SampleTrigger : Trigger
 
 ## 跨 Mod 钩子
 
-我们也可以为另一个 Mod 添加 IL 钩子, 参考 [IL 钩子](hooks/il_hook.md#钩取其他-helper).
+我们也可以为另一个 Mod 添加 IL 钩子, 参考 [IL 钩子](hooks/il_hook.md#helper).
 
 不过, 一般不鼓励像这样改变另一个 Mod 的行为. 安装 Mod 的用户通常希望它的行为与描述一致, 因此任何外部更改都应尽量少做.
 此外, 这种方法比使用反射调用方法更加脆弱, 因为它依赖于签名和 IL 的相对稳定.
