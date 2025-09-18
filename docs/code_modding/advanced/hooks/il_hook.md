@@ -1,11 +1,10 @@
-# IL 钩子与随意钩取
-
-## IL 钩子
-
-### 插入 IL
+# IL 钩子
 
 现在, 你已经了解了基本的 IL 知识, 稍微会使用 `System.Reflection.Emit` 库了, 那么我们就可以开始使用 IL 钩子了. IL 钩子允许你**修改**蔚蓝的代码,
 这是一个很强大的功能, 那么自然而然, 它的使用也会变得更加复杂.  
+
+
+## 插入 IL
 
 IL 钩子与 On 钩子的事件订阅方式很相像, 只不过是换成了 IL 命名空间, 不过要注意的是, 方法的参数不再是原函数委托加上其对应参数了, 而是一个 `ILContext` 类型的值,
 同时, 方法也不是每次调用被钩方法时调用, 而是仅在游戏启动时调用. 例如, 钩取玩家的 `SuperWallJump` 方法(在玩家做出了一个蹭墙时调用):
@@ -122,24 +121,6 @@ if (cur.TryGotoNext(ins => ins.MatchLdcR4(-160f), ins => ins.MatchStfld<Vector2>
     cur.Emit(OpCodes.Mul);
 }
 ```
-
-### 移除 IL
-
-通常除了插入, 我们还需要移除 IL, 对于修改 IL 的情况我们只需要先移除再插入即可.  
-要移除一行 IL, 我们可以使用 `Remove` 方法, `Remove` 方法会移除指针所指的 IL 行, 例如我们依然修改玩家的蹭墙跳竖直速度, 但是在这里我们直接覆盖我们的新值:
-
-```cs
-if (cur.TryGotoNext(ins => ins.MatchLdcR4(-160f), ins => ins.MatchStfld<Vector2>("Y")))
-{
-    // 注意没有 cur.Index++ 了, 记住 Emit 时新代码被添加到上一行, 而 Remove 时则移除当前行
-    cur.Remove();
-    // 当前一行的 IL 已经被移除了, 现在指针实际上指向之前的下一行, 所以我们可以直接 Emit
-    cur.Emit(OpCodes.Ldc_R4, -300.0f);
-}
-```
-
-!!! note
-    在插入 IL, 修改 IL, 更改 IL 指针指向时务必清楚插入位置, 删除目标, 以及操作完成后的指针指向.
 
 ## 任意钩取
 

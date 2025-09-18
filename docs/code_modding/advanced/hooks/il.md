@@ -132,21 +132,21 @@ static int Add(int a, int b, int c)
 
 ```c
 .method private hidebysig static 
-		int32 Add (
-			int32 a,
-			int32 b,
-			int32 c
-		) cil managed 
-	{
-		.maxstack 8
+        int32 Add (
+            int32 a,
+            int32 b,
+            int32 c
+        ) cil managed 
+    {
+        .maxstack 8
 
-		IL_0000: ldarg.0
-		IL_0001: ldarg.1
-		IL_0002: add
-		IL_0003: ldarg.2
-		IL_0004: add
-		IL_0005: ret
-	} // end of method Program::Add
+        IL_0000: ldarg.0
+        IL_0001: ldarg.1
+        IL_0002: add
+        IL_0003: ldarg.2
+        IL_0004: add
+        IL_0005: ret
+    } // end of method Program::Add
 ```
 
 这里我们把一部分声明部分放出来了, 不过我们只需要关心这一行: `.maxstack 8`, 它表示请求在这个方法执行过程中评估栈有确保 8 个大小的空间可以使用.

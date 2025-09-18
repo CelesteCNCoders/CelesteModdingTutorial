@@ -1,8 +1,8 @@
-# Loenn 绘制
+# 渲染
 
 ## sprite 函数
 
-## Loenn 绘制相关插件
+## Loenn 渲染相关模块
 
 ### struct.drawable_line
 

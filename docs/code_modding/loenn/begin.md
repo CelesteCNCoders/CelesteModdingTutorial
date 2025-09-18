@@ -1,8 +1,3 @@
-# Loenn 基础配置
+# 开始
 
-## Lua
-
-## EntityData
-
-## 基础结构
-
+## Lua 编程能力

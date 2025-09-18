@@ -99,7 +99,7 @@ public void orig_ctor(EntityData e, Vector2 offset)
 
 ### orig_*
 
-还有一些函数以 `orig_` 开头, 这其实是 everest 自己"[钩取](../hooks/hook.md)"的函数. 在这里, 比如 `Player.Update` 方法就被 everest 进行了"钩取",
+还有一些函数以 `orig_` 开头, 这其实是 everest 自己"[钩取](../advanced/hooks/on_hook.md)"的函数. 在这里, 比如 `Player.Update` 方法就被 everest 进行了"钩取",
 而钩子函数本体就是 `Player.Update`, 而对应我们钩子的 `orig` 委托在就体现为 `orig_Update` 方法.
 
 ```cs title="Player.Update  (像钩子本体一样!)"
@@ -118,7 +118,7 @@ public override void Update()
     如果你自行钩取 `Player.Update` 函数这种已被 everest "钩取" 的函数实际上你钩取的是 everest 的钩子, 这对于 `On` 钩子可能没有大影响,
     但是对于后面我们会说的 `IL` 钩子有很大影响, 不过这些我们等到后面再说.
 
-## [反编译代码中的奇怪数字](../components/statemachine.md#st)
+## [反编译代码中的奇怪数字](../wiki/component/statemachine.md#st)
 
 有时你能在代码中看到各种奇怪的数字
 

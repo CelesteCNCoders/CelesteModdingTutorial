@@ -1,4 +1,4 @@
-# Settings, Session, SaveData
+# 数据管理
 
 <del>这部分内容在 Everest Wiki 里是在配置环境的同时说的, 我个人认为应该推后一点但是似乎现在推后的有点过头.</del>
 
