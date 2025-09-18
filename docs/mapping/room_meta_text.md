@@ -513,7 +513,7 @@ ThisIsMyName_MyFirstMod_0_MyFirstMap= 你好这里是第一章！
 ```
 在基础设置之外，如果你安装了`Maddie's Helping Hand`这个mod，那么你可以将原本地图章节名称上方类似于`第1章`的文字进行更改，具体的格式如下：
 ```
-maddiehelpinghand_chapternumber_地图bin路径= 章节序号名
+maddiehelpinghand_chapternumber_(你的地图bin路径)= (章节序号名)
 ```
 应用到前文所说的例子中，则应该看起来是这样：
 ```
