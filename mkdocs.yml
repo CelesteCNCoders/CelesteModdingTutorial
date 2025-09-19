@@ -118,7 +118,10 @@ nav:
             - 协程钩取: "code_modding/advanced/hooks/coroutine_hooking.md"
         - 私有访问: "code_modding/advanced/private_access.md"
         - 跨 Mod 交互: "code_modding/advanced/cross_mod_interaction.md"
+        - 自定义命令: "code_modding/advanced/custom_command.md"
+        - 粒子系统: "code_modding/advanced/particle_system.md"
         - 进阶渲染:
+            - Renderer: "code_modding/advanced/rendering/renderer.md"
             - SpriteBatch: "code_modding/advanced/rendering/sprite_batch.md"
             - VirtualRenderTarget: "code_modding/advanced/rendering/virtual_render_target.md"
             - Effect: "code_modding/advanced/rendering/effect.md"
