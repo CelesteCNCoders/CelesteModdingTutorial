@@ -1,2 +1,11 @@
 /site
 deploy.bat
+.VSCodeCounter/**
+.vs/**
+.idea/
+**/Source/bin/**
+**/Source/obj/**
+**/Source/.vs/**
+**/Source/CelesteModTutorial.sln
+docs/code_modding/misc/what.md
+docs/code_modding/misc/GhostLand.gif
