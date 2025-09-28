@@ -1,0 +1,4565 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Celeste Modding Tutorial">
+      
+      
+        <meta name="author" content="Saplonily">
+      
+      
+        <link rel="canonical" href="https://saplonily.top/celeste_modding_tutorial/code_modding/extra/lua/data_type/">
+      
+      
+        <link rel="prev" href="../syntax/">
+      
+      
+        <link rel="next" href="../control_flow/">
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>数据类型 - Celeste Mod 制作教程</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../../../css/content.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lua" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../.." title="Celeste Mod 制作教程" class="md-header__button md-logo" aria-label="Celeste Mod 制作教程" data-md-component="logo">
+      
+  <img src="../../../../assets/images/favicon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Celeste Mod 制作教程
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              数据类型
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Saplonily/CelesteModdingTutorial" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Saplonily/CelesteModdingTutorial
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Celeste Mod 制作教程" class="md-nav__button md-logo" aria-label="Celeste Mod 制作教程" data-md-component="logo">
+      
+  <img src="../../../../assets/images/favicon.png" alt="logo">
+
+    </a>
+    Celeste Mod 制作教程
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Saplonily/CelesteModdingTutorial" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Saplonily/CelesteModdingTutorial
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    首页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    地图制作
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            地图制作
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../mapping/basic_env/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    软件安装, 游戏配置
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../mapping/mod_structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Mod 结构
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../mapping/loenn_basic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Loenn 基础
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../mapping/room_meta_text/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    房间属性，元数据，文本
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../shared/graphics_dump/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Graphics Dump
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../mapping/reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    常用参考
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../mapping/dialog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Dialog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    皮肤 Mod 制作
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            皮肤 Mod 制作
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../shared/graphics_dump/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Graphics Dump
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Code Mod 制作 (Legacy)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Code Mod 制作 (Legacy)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    首页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    推荐入门顺序
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            推荐入门顺序
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    前言
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../coding_setup/basic_env/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    基础环境配置
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../coding_setup/code_reading/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    阅读代码
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../coding_setup/debug/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    调试
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/hooks/on_hook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    On 钩子
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../coding_challenges/simple_entity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    简单自定义实体
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../coding_challenges/simple_trigger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    简单自定义Trigger
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../coding_challenges/simple_texturing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    简单贴图
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    一些准备
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            一些准备
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../coding_setup/basic_env/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    基础环境配置
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../coding_setup/code_reading/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    阅读代码
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../coding_setup/debug/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    调试
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    基础
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            基础
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    前言
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_2" id="__nav_4_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    游戏框架
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            游戏框架
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../basics/framework/monocle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Monocle
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../basics/framework/ec_architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    EC 架构
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../basics/framework/life_cycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    生命周期
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_3" id="__nav_4_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    核心系统
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            核心系统
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../basics/core_system/everest_module/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    EverestModule
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../basics/core_system/session_settings_savedata/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    数据管理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../basics/core_system/input_handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    输入处理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../basics/core_system/collision_detection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    碰撞检测
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../basics/core_system/asset_management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    资产管理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../basics/core_system/simple_rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    简单渲染
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../basics/core_system/audio_interaction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    音频交互
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_4" id="__nav_4_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    应用
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            应用
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../basics/application/entity_data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    EntityData
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../basics/application/tracker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tracker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../basics/application/flag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Flag
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../basics/application/tag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tag
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    进阶
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            进阶
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5_1" id="__nav_4_5_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    钩子
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            钩子
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/hooks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    前言
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/hooks/on_hook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    On 钩子
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/hooks/il/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    IL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/hooks/il_instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    IL 指令速查表
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/hooks/il_hook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    IL 钩子
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/hooks/coroutine_hooking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    协程钩取
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/private_access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    私有访问
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/cross_mod_interaction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    跨 Mod 交互
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/custom_command/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    自定义命令
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/particle_system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    粒子系统
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5_6" id="__nav_4_5_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    进阶渲染
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            进阶渲染
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/rendering/renderer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Renderer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/rendering/sprite_batch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SpriteBatch
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/rendering/virtual_render_target/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    VirtualRenderTarget
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/rendering/effect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Effect
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Loenn
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            Loenn
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../loenn/begin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    开始
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../loenn/folder_structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    目录结构
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../loenn/entity_structs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Entity 结构
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../loenn/trigger_structs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Trigger 结构
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../loenn/rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    渲染
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Wiki
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            Wiki
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7_1" id="__nav_4_7_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    实体
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_7_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7_1">
+            <span class="md-nav__icon md-icon"></span>
+            实体
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../wiki/entity/player/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Player
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7_2" id="__nav_4_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    组件
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            组件
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../wiki/component/sprite_image/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sprite, Image
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../wiki/component/tween/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tween
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../wiki/component/coroutine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Coroutine
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../wiki/component/alarm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Alarm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../wiki/component/static_mover/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    StaticMover
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../wiki/component/statemachine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    StateMachine
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../wiki/component/holdable/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Holdable
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../wiki/component/bloompoint_vertaxlight/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    BloomPoint, VertexLight
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../wiki/component/sound_source/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SoundSource
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../wiki/level/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Level
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_8" id="__nav_4_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    实战
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8">
+            <span class="md-nav__icon md-icon"></span>
+            实战
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../coding_challenges/test_map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    测试地图
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../coding_challenges/simple_entity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    简单自定义实体
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../coding_challenges/simple_trigger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    简单自定义Trigger
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../coding_challenges/simple_texturing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    简单贴图
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../coding_challenges/simple_component/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    简单自定义组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_9" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_9" id="__nav_4_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    额外
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_9">
+            <span class="md-nav__icon md-icon"></span>
+            额外
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    FAQ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_9_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_9_2" id="__nav_4_9_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    XML
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_9_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_9_2">
+            <span class="md-nav__icon md-icon"></span>
+            XML
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../xml/xml_speedrun/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    XML 简单介绍
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_9_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_9_3" id="__nav_4_9_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Lua
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_9_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_9_3">
+            <span class="md-nav__icon md-icon"></span>
+            Lua
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../begin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    开始
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../syntax/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    基本语法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    数据类型
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    数据类型
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本数据类型
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="基本数据类型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nil" class="md-nav__link">
+    <span class="md-ellipsis">
+      nil
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#number" class="md-nav__link">
+    <span class="md-ellipsis">
+      number
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#string" class="md-nav__link">
+    <span class="md-ellipsis">
+      string
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boolean" class="md-nav__link">
+    <span class="md-ellipsis">
+      boolean
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table" class="md-nav__link">
+    <span class="md-ellipsis">
+      table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function" class="md-nav__link">
+    <span class="md-ellipsis">
+      function
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      类型转换
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control_flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    流程控制
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    运算符
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iterator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    迭代器
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../module/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    模块
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../standard_library/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    标准库
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_9_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_9_4" id="__nav_4_9_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    LuaCutscene
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_9_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_9_4">
+            <span class="md-nav__icon md-icon"></span>
+            LuaCutscene
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua_cutscene/begin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    开始
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua_cutscene/reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    参考
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua_cutscene/cs_access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    C# 交互
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua_cutscene/examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    例子
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_10" id="__nav_4_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    历史归档
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_10">
+            <span class="md-nav__icon md-icon"></span>
+            历史归档
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../arc/basic_env/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    基础环境配置
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../arc/project_template/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    通过模板创建项目
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../arc/preference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    偏好
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../arc/sdk-styled-proj/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    偏好-sdk-styled-proj
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_11" id="__nav_4_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    杂项
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_11">
+            <span class="md-nav__icon md-icon"></span>
+            杂项
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/change_log/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ChangeLog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/to_do_list/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ToDoList
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本数据类型
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="基本数据类型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nil" class="md-nav__link">
+    <span class="md-ellipsis">
+      nil
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#number" class="md-nav__link">
+    <span class="md-ellipsis">
+      number
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#string" class="md-nav__link">
+    <span class="md-ellipsis">
+      string
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boolean" class="md-nav__link">
+    <span class="md-ellipsis">
+      boolean
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table" class="md-nav__link">
+    <span class="md-ellipsis">
+      table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function" class="md-nav__link">
+    <span class="md-ellipsis">
+      function
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      类型转换
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="lua">Lua 数据类型</h1>
+<h2 id="_1">基本数据类型</h2>
+<p><code>Lua</code> 是动态类型语言, 其变量在运行时根据赋值的内容自动决定数据类型.</p>
+<p><code>Lua</code> 有以下 8 种基本数据类型:</p>
+<ul>
+<li><code>nil</code>: 表示一个空值或无效值</li>
+<li><code>number</code>: 表示双精度类型的浮点数</li>
+<li><code>string</code>: 表示字符串</li>
+<li><code>boolean</code>: 表示布尔值</li>
+<li><code>table</code>: 表示表类型</li>
+<li><code>function</code>: 表示函数类型</li>
+<li><code>userdata</code>: 表示用户自定义的数据类型</li>
+<li><code>thread</code>: 表示线程类型</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><code>Loenn</code> 侧的 <code>Lua</code> 脚本编写并不会涉及 <code>userdata</code> 与 <code>thread</code>, 下面不做介绍.       <br />
+<del>实际上是自己也不清楚(草草</del></p>
+</div>
+<p>我们可以使用 <code>type()</code> 函数查看变量的类型:
+<div class="language-lua highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">-- nil</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="kc">nil</span><span class="p">))</span><span class="w">              </span><span class="c1">-- 输出 nil</span>
+
+<span class="c1">-- number</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="mi">202</span><span class="p">))</span><span class="w">              </span><span class="c1">-- 输出 number</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="mf">3.14</span><span class="p">))</span><span class="w">             </span><span class="c1">-- 输出 number</span>
+
+<span class="c1">-- string</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="s2">&quot;Celeste&quot;</span><span class="p">))</span><span class="w">        </span><span class="c1">-- 输出 string</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="s2">&quot;mb6fbhsphdrcb&quot;</span><span class="p">))</span><span class="w">  </span><span class="c1">-- 输出 string</span>
+
+<span class="c1">-- boolean</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="kc">true</span><span class="p">))</span><span class="w">             </span><span class="c1">-- 输出 boolean</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="kc">false</span><span class="p">))</span><span class="w">            </span><span class="c1">-- 输出 boolean</span>
+
+<span class="c1">-- table</span>
+<span class="kd">local</span><span class="w"> </span><span class="nv">numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="nv">numbers</span><span class="p">))</span><span class="w">          </span><span class="c1">-- 输出 table</span>
+
+<span class="c1">-- function</span>
+<span class="kd">local</span><span class="w"> </span><span class="kr">function</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="nv">a</span><span class="p">,</span><span class="w"> </span><span class="nv">b</span><span class="p">)</span>
+<span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">b</span>
+<span class="kr">end</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="nv">add</span><span class="p">))</span><span class="w">              </span><span class="c1">-- 输出 function</span>
+</code></pre></div></td></tr></table></div></p>
+<h3 id="nil">nil</h3>
+<p><code>nil</code> 是一种特殊的类型, 只包含一个值 <code>nil</code>. 所有未初始化的变量都被视为 <code>nil</code>, 把变量赋值为 <code>nil</code> 即可删除这个变量:
+<div class="language-lua highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="nv">a</span><span class="p">)</span><span class="w">        </span><span class="c1">-- 输出 nil</span>
+<span class="kd">local</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w">    </span><span class="c1">-- 初始化变量 a</span>
+<span class="nb">print</span><span class="p">(</span><span class="nv">a</span><span class="p">)</span><span class="w">        </span><span class="c1">-- 输出 10</span>
+<span class="nv">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">nil</span><span class="w">         </span><span class="c1">-- 删除变量 a</span>
+<span class="nb">print</span><span class="p">(</span><span class="nv">a</span><span class="p">)</span><span class="w">        </span><span class="c1">-- 输出 nil</span>
+</code></pre></div></td></tr></table></div></p>
+<p><code>nil</code> 在逻辑判断中被视为"假", 但其与布尔值 <code>false</code> 是不同的值:
+<div class="language-lua highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kd">local</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">nil</span>
+<span class="kr">if</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="kr">then</span>
+<span class="w">    </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Value is valid&quot;</span><span class="p">)</span>
+<span class="kr">else</span>
+<span class="w">    </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Value is nil&quot;</span><span class="p">)</span><span class="w">    </span><span class="c1">-- 输出 Value is nil</span>
+<span class="kr">end</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="kc">nil</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span><span class="w">    </span><span class="c1">-- 输出 false</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="kc">nil</span><span class="p">))</span><span class="w">       </span><span class="c1">-- 输出 nil</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="kc">false</span><span class="p">))</span><span class="w">     </span><span class="c1">-- 输出 boolean</span>
+</code></pre></div></td></tr></table></div></p>
+<h3 id="number">number</h3>
+<p><code>Lua</code> 默认只有一种数字类型, 即双精度浮点数 <code>double</code>. 以下写法都可以表示 <code>number</code> 类型:
+<div class="language-lua highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">-- 输出结果都为 number</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="mf">2.2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="mf">0.2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="mf">2e+1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="mf">0.2e-1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="mf">7.8263692594256e-06</span><span class="p">))</span>
+</code></pre></div></td></tr></table></div></p>
+<p><code>number</code> 在进行浮点数运算时会出现数值精度误差, 这导致在进行计算时可能会出现预期外的结果:
+<div class="language-lua highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="mf">0.1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.2</span><span class="p">)</span><span class="w">           </span><span class="c1">-- 输出 0.3, 但实际计算结果可能是 0.30000000000000004</span>
+<span class="nb">print</span><span class="p">(</span><span class="mf">0.1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">0.3</span><span class="p">)</span><span class="w">    </span><span class="c1">-- 输出 false</span>
+
+<span class="c1">-- 浮点数精度比较函数的可能实现</span>
+<span class="c1">-- 添加参数 precision 判断两个浮点数的误差是否小到可以忽略</span>
+<span class="kd">local</span><span class="w"> </span><span class="kr">function</span><span class="w"> </span><span class="nf">almostEqual</span><span class="p">(</span><span class="nv">a</span><span class="p">,</span><span class="w"> </span><span class="nv">b</span><span class="p">,</span><span class="w"> </span><span class="nv">precision</span><span class="p">)</span>
+<span class="w">    </span><span class="nv">precision</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">precision</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="mf">1e-10</span>
+<span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="nb">math.abs</span><span class="p">(</span><span class="nv">a</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">b</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nv">precision</span>
+<span class="kr">end</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nf">almostEqual</span><span class="p">(</span><span class="mf">0.1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">))</span><span class="w">    </span><span class="c1">-- 输出 true, 忽略了微小误差</span>
+</code></pre></div></td></tr></table></div></p>
+<p><code>number</code> 类型存在三种特殊值: <code>infinite</code>, <code>-infinite</code> 以及 <code>NaN</code>. 其中, <code>NaN</code> 是唯一不等于自身的值:
+<div class="language-lua highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span><span class="w">     </span><span class="c1">-- 输出 number</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span><span class="w">    </span><span class="c1">-- 输出 number</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span><span class="w">     </span><span class="c1">-- 输出 number</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w">          </span><span class="c1">-- 输出 inf</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">math.huge</span><span class="p">)</span><span class="w">      </span><span class="c1">-- 输出 inf</span>
+<span class="nb">print</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w">         </span><span class="c1">-- 输出 -inf</span>
+<span class="nb">print</span><span class="p">(</span><span class="o">-</span><span class="nb">math.huge</span><span class="p">)</span><span class="w">     </span><span class="c1">-- 输出 -inf</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w">          </span><span class="c1">-- 输出 -nan(ind)</span>
+
+<span class="nb">print</span><span class="p">((</span><span class="mi">0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span><span class="w">    </span><span class="c1">-- 输出 false, NaN 不等于自身</span>
+</code></pre></div></td></tr></table></div></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>-nan(ind)</code> 表示未定义结果, <code>nan</code> 表示这不是一个数字, 即 <code>Not a Number</code>. 其中 <code>ind</code> 是 <code>indeterminate</code> 的缩写, 即"不确定".        <br />
+进行未定义行为的运算都会得到这个值, 例如 <code>0 / 0</code>, <code>0 ^ 0</code> 以及 <code>math.sqrt(-1)</code> 等.</p>
+</div>
+<h3 id="string">string</h3>
+<p><code>Lua</code> 中 <code>string</code> 类型用于表示文本数据或字符序列. 可以使用 <code>' '</code>, <code>" "</code> 以及 <code>[[ ]]</code> 声明字符串:
+<div class="language-lua highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kd">local</span><span class="w"> </span><span class="nv">str1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Celeste&quot;</span><span class="w">        </span><span class="c1">-- 使用 &quot;&quot; 声明</span>
+<span class="kd">local</span><span class="w"> </span><span class="nv">str2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Everest&#39;</span><span class="w">        </span><span class="c1">-- 使用 &#39;&#39; 声明, &quot;&quot; 与 &#39;&#39; 并没有区别</span>
+
+<span class="c1">-- 使用 [[]] 声明多行字符串, 这种声明方式会保留字符串中的换行与格式</span>
+<span class="c1">-- print(str3) 的输出会是:  </span>
+<span class="c1">--</span>
+<span class="c1">-- some stuff i guess</span>
+<span class="c1">-- another stuff                     </span>
+<span class="kd">local</span><span class="w"> </span><span class="nv">str3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">[[               </span>
+<span class="s">some stuff i guess</span>
+<span class="s">another stuff</span>
+<span class="s">]]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="nv">str1</span><span class="p">))</span><span class="w">    </span><span class="c1">-- 输出 string</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="nv">str2</span><span class="p">))</span><span class="w">    </span><span class="c1">-- 输出 string</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="nv">str3</span><span class="p">))</span><span class="w">    </span><span class="c1">-- 输出 string</span>
+</code></pre></div></td></tr></table></div></p>
+<p>可以在字符串中使用转义字符 <code>\</code> 表示一些无法直接输入或有特殊含义的字符:
+<div class="language-lua highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">wow</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="p">)</span><span class="w">             </span><span class="c1">-- 输出 &quot;wow&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;IVXL </span><span class="se">\\\\</span><span class="s2"> ECOM&quot;</span><span class="p">)</span><span class="w">      </span><span class="c1">-- 输出 IVXL \\ ECOM</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a line</span><span class="se">\n</span><span class="s2">new line&quot;</span><span class="p">)</span><span class="w">    </span><span class="c1">-- 输出 a line</span>
+<span class="w">                             </span><span class="c1">--      new line </span>
+</code></pre></div></td></tr></table></div></p>
+<p><code>string</code> 类型是不可变的, 所有修改字符串的操作本质上都是生成并返回修改后的字符串:
+<div class="language-lua highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kd">local</span><span class="w"> </span><span class="nv">str1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hi there&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="nv">str1</span><span class="p">)</span><span class="w">      </span><span class="c1">-- 输出 hi there</span>
+
+<span class="c1">-- 直接修改 string 的值会报错</span>
+<span class="c1">-- str1[1] = &quot;H&quot;    报错 attempt to index a string value (local &#39;str1&#39;)</span>
+
+<span class="kd">local</span><span class="w"> </span><span class="nv">str2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;H&quot;</span><span class="w"> </span><span class="o">..</span><span class="w"> </span><span class="nv">str1</span><span class="p">:</span><span class="nf">sub</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w">    </span><span class="c1">-- 使用 .. 运算符与 sub 方法生成新的字符串 str2</span>
+<span class="nb">print</span><span class="p">(</span><span class="nv">str2</span><span class="p">)</span><span class="w">      </span><span class="c1">-- 输出 Hi there</span>
+<span class="nb">print</span><span class="p">(</span><span class="nv">str1</span><span class="p">)</span><span class="w">      </span><span class="c1">-- 输出 hi there, str1 的值并没有被改变</span>
+</code></pre></div></td></tr></table></div></p>
+<h3 id="boolean">boolean</h3>
+<p><code>boolean</code> 类型有两个取值: <code>true</code> 和 <code>false</code>, 通常用于条件判断, 循环控制等. 可以直接声明 <code>boolean</code> 类型的变量为 <code>true</code> 或 <code>false</code>:
+<div class="language-lua highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kd">local</span><span class="w"> </span><span class="nv">var1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="kd">local</span><span class="w"> </span><span class="nv">var2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nv">var1</span><span class="p">)</span><span class="w">    </span><span class="c1">-- 输出 boolean</span>
+<span class="nb">print</span><span class="p">(</span><span class="nv">var2</span><span class="p">)</span><span class="w">    </span><span class="c1">-- 输出 boolean</span>
+</code></pre></div></td></tr></table></div></p>
+<p><code>nil</code> 和 <code>false</code> 是唯一被认为是"假"的值, 其他的值都被认为是"真":
+<div class="language-lua highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">-- nil 被认为是假</span>
+<span class="kr">if</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="kr">then</span>
+<span class="w">    </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;nil is true&quot;</span><span class="p">)</span>
+<span class="kr">else</span>
+<span class="w">    </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;nil is false&quot;</span><span class="p">)</span><span class="w">      </span><span class="c1">-- 输出 nil is false</span>
+<span class="kr">end</span>
+
+<span class="c1">-- false 被认为是假</span>
+<span class="kr">if</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="kr">then</span>
+<span class="w">    </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;false is true&quot;</span><span class="p">)</span>
+<span class="kr">else</span>
+<span class="w">    </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;false is false&quot;</span><span class="p">)</span><span class="w">    </span><span class="c1">-- 输出 false is false</span>
+<span class="kr">end</span>
+
+<span class="c1">-- 0 被认为是真</span>
+<span class="kr">if</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="kr">then</span>
+<span class="w">    </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;0 is true&quot;</span><span class="p">)</span><span class="w">         </span><span class="c1">-- 输出 0 is true</span>
+<span class="kr">else</span>
+<span class="w">    </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;0 is false&quot;</span><span class="p">)</span>
+<span class="kr">end</span>
+
+<span class="c1">-- 空字符串 &quot;&quot; 被认为是真</span>
+<span class="kr">if</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="kr">then</span>
+<span class="w">    </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\&quot;\&quot;</span><span class="s2"> is true&quot;</span><span class="p">)</span><span class="w">      </span><span class="c1">-- 输出 &quot;&quot; is true</span>
+<span class="kr">else</span>
+<span class="w">    </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\&quot;\&quot;</span><span class="s2"> is false&quot;</span><span class="p">)</span>
+<span class="kr">end</span>
+
+<span class="c1">-- 空表 {} 被认为是真</span>
+<span class="kr">if</span><span class="w"> </span><span class="p">{}</span><span class="w"> </span><span class="kr">then</span>
+<span class="w">    </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;{} is true&quot;</span><span class="p">)</span><span class="w">        </span><span class="c1">-- 输出 {} is true</span>
+<span class="kr">else</span>
+<span class="w">    </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;{} is false&quot;</span><span class="p">)</span>
+<span class="kr">end</span>
+</code></pre></div></td></tr></table></div></p>
+<h3 id="table">table</h3>
+<p><code>Lua</code> 只有 <code>table</code> 一种基本数据结构, 即"表". 其可以实现数组, 字典, 堆栈, 链表等复杂数据结构. <code>table</code> 是关联数组, 可以使用除 <code>nil</code> 外任何类型的值作为数组的索引. 索引对应的值可以是任何类型, 包括 <code>nil</code>. <code>table</code> 没有预定义的大小, 可以动态扩展.</p>
+<p>我们可以使用 <code>{}</code> 声明一个空表, 也可以向其填充数据以直接初始化表. 可以通过 <code>[]</code> 索引器访问对应的值:</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><code>Lua</code> 还提供了一种遍历表中元素的访问方式, 你可以在 <a href="../iterator/">Lua - 迭代器</a> 找到.</p>
+</div>
+<div class="language-lua highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">-- 声明一个空表</span>
+<span class="kd">local</span><span class="w"> </span><span class="nv">emptyTable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{}</span><span class="w">    </span>
+
+<span class="c1">-- 预先填充数据以直接初始化表, 其中每项元素使用 , 进行分隔</span>
+<span class="c1">-- 连续索引的表</span>
+<span class="kd">local</span><span class="w"> </span><span class="nv">fruitTable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;orange&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;strawberry&quot;</span><span class="p">}</span><span class="w"> </span>
+
+<span class="c1">-- 连续索引, 即数组类型的表其索引从 1 开始而不是 0</span>
+<span class="c1">-- 索引越界会返回 nil</span>
+<span class="nb">print</span><span class="p">(</span><span class="nv">fruitTable</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="w">    </span><span class="c1">-- 输出 apple</span>
+<span class="nb">print</span><span class="p">(</span><span class="nv">fruitTable</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="w">    </span><span class="c1">-- 输出 nil</span>
+<span class="nb">print</span><span class="p">(</span><span class="nv">fruitTable</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span><span class="w">    </span><span class="c1">-- 输出 nil</span>
+
+<span class="c1">---------------------------------------------------------------------------------------------</span>
+
+<span class="kd">local</span><span class="w"> </span><span class="kr">function</span><span class="w"> </span><span class="nf">someFunc</span><span class="p">()</span>
+<span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="s2">&quot;hi there&quot;</span>
+<span class="kr">end</span>
+
+<span class="kd">local</span><span class="w"> </span><span class="kr">function</span><span class="w"> </span><span class="nf">noReturnValue</span><span class="p">()</span><span class="w"> </span><span class="kr">end</span>
+
+<span class="c1">-- 非连续索引的表可以有任意类型和不连续的键</span>
+<span class="kd">local</span><span class="w"> </span><span class="nv">mixedTable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span><span class="w">                                </span><span class="c1">-- number 作为索引, nil 作为值</span>
+<span class="w">    </span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">202</span><span class="p">,</span><span class="w">                          </span><span class="c1">-- string 作为索引, number 作为值</span>
+<span class="w">    </span><span class="nv">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">                            </span><span class="c1">-- string 作为索引时可以省略 [&quot;&quot;], boolean 作为值</span>
+<span class="w">    </span><span class="p">[</span><span class="kc">true</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;a boolean value&quot;</span><span class="p">,</span><span class="w">               </span><span class="c1">-- boolean 作为索引, string 作为值  </span>
+<span class="w">    </span><span class="nv">sayHi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">someFunc</span><span class="p">(),</span><span class="w">                       </span><span class="c1">-- string 作为索引, function 作为值</span>
+<span class="w">    </span><span class="p">[</span><span class="nf">someFunc</span><span class="p">()]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;use function as index&quot;</span><span class="w">    </span><span class="c1">-- function 作为索引, string 作为值</span>
+
+<span class="c1">--  不能使用没有返回值的函数作为索引, 访问时会报错 &quot;table index is nil&quot;</span>
+<span class="c1">--  没有返回值的函数会返回 nil, nil 不能作为表的索引</span>
+<span class="c1">--  [noReturnValue()] = &quot;error&quot;</span>
+<span class="p">}</span>
+
+<span class="c1">-- 表内也可以嵌套表</span>
+<span class="kd">local</span><span class="w"> </span><span class="nv">nestedTable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">[</span><span class="nv">fruitTable</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;some fruit&quot;</span><span class="p">,</span><span class="w">     </span><span class="c1">-- table 作为索引, string 作为值  </span>
+<span class="w">    </span><span class="nv">inner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w">                        </span><span class="c1">-- string 作为索引, table 作为值</span>
+<span class="w">        </span><span class="nv">innerIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;innerValue&quot;</span><span class="w">    </span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">-- 通过 [] 访问索引对应的值</span>
+<span class="nb">print</span><span class="p">(</span><span class="nv">mixedTable</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="w">             </span><span class="c1">-- 输出 nil</span>
+<span class="nb">print</span><span class="p">(</span><span class="nv">mixedTable</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">])</span><span class="w">       </span><span class="c1">-- 输出 202</span>
+<span class="nb">print</span><span class="p">(</span><span class="nv">mixedTable</span><span class="p">.</span><span class="py">result</span><span class="p">)</span><span class="w">         </span><span class="c1">-- 输出 true, string 作为索引可以通过 . 访问其对应的值</span>
+<span class="nb">print</span><span class="p">(</span><span class="nv">mixedTable</span><span class="p">[</span><span class="kc">true</span><span class="p">])</span><span class="w">          </span><span class="c1">-- 输出 a boolean value </span>
+
+<span class="c1">-- 函数作为索引时会使用其返回值作为索引, 有多个返回值则使用第一个返回值作为索引</span>
+<span class="c1">-- 也可以直接通过函数名访问对应的值</span>
+<span class="nb">print</span><span class="p">(</span><span class="nv">mixedTable</span><span class="p">[</span><span class="s2">&quot;hi there&quot;</span><span class="p">])</span><span class="w">       </span><span class="c1">-- 输出 use function as index</span>
+<span class="nb">print</span><span class="p">(</span><span class="nv">mixedTable</span><span class="p">[</span><span class="nf">someFunc</span><span class="p">()])</span><span class="w">       </span><span class="c1">-- 输出 use function as index</span>
+
+<span class="c1">-- 函数作为值时访问会返回其返回值</span>
+<span class="nb">print</span><span class="p">(</span><span class="nv">mixedTable</span><span class="p">.</span><span class="py">sayHi</span><span class="p">)</span><span class="w">             </span><span class="c1">-- 输出 hi there</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nv">nestedTable</span><span class="p">[</span><span class="nv">fruitTable</span><span class="p">])</span><span class="w">         </span><span class="c1">-- 输出 some fruit</span>
+<span class="nb">print</span><span class="p">(</span><span class="nv">nestedTable</span><span class="p">.</span><span class="py">inner</span><span class="p">.</span><span class="py">innerIndex</span><span class="p">)</span><span class="w">    </span><span class="c1">-- 输出 innerValue</span>
+
+<span class="c1">-- 访问不存在的索引会返回 nil</span>
+<span class="nb">print</span><span class="p">(</span><span class="nv">nestedTable</span><span class="p">.</span><span class="py">notExistIndex</span><span class="p">)</span><span class="w">       </span><span class="c1">-- 输出 nil</span>
+</code></pre></div></td></tr></table></div>
+<p>我们也可以动态地向表中添加或删除元素:
+<div class="language-lua highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kd">local</span><span class="w"> </span><span class="nv">someTable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="c1">-- 动态添加元素</span>
+<span class="nv">someTable</span><span class="p">.</span><span class="py">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Madeline&quot;</span>
+<span class="nv">someTable</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;second element&quot;</span>
+<span class="nv">someTable</span><span class="p">.</span><span class="py">square</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="nv">x</span><span class="p">)</span><span class="w"> </span><span class="kr">return</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="o">^</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="kr">end</span>
+
+<span class="cm">--[[</span>
+<span class="cm">添加完成后的表会是</span>
+<span class="cm">someTable = {</span>
+<span class="cm">    player = &quot;Madeline&quot;,</span>
+<span class="cm">    [2] = &quot;second element&quot;,</span>
+<span class="cm">    square = function(x) return x ^ 2 end</span>
+<span class="cm">}</span>
+<span class="cm">--]]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nv">someTable</span><span class="p">.</span><span class="py">player</span><span class="p">)</span><span class="w">       </span><span class="c1">-- 输出 Madeline</span>
+<span class="nb">print</span><span class="p">(</span><span class="nv">someTable</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="w">           </span><span class="c1">-- 输出 second element</span>
+<span class="nb">print</span><span class="p">(</span><span class="nv">someTable</span><span class="p">.</span><span class="nf">square</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span><span class="w">    </span><span class="c1">-- 输出 25.0</span>
+
+<span class="c1">-- 向索引赋值 nil 即可删除键值对</span>
+<span class="nv">someTable</span><span class="p">.</span><span class="py">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">nil</span>
+<span class="nv">someTable</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">nil</span>
+
+<span class="cm">--[[</span>
+<span class="cm">删除完成后的表会是</span>
+<span class="cm">someTable = {</span>
+<span class="cm">    square = function(x) return x ^ 2 end</span>
+<span class="cm">}</span>
+<span class="cm">--]]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nv">someTable</span><span class="p">.</span><span class="py">player</span><span class="p">)</span><span class="w">       </span><span class="c1">-- 输出 nil</span>
+<span class="nb">print</span><span class="p">(</span><span class="nv">someTable</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="w">           </span><span class="c1">-- 输出 nil</span>
+<span class="nb">print</span><span class="p">(</span><span class="nv">someTable</span><span class="p">.</span><span class="nf">square</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span><span class="w">    </span><span class="c1">-- 输出 25.0</span>
+</code></pre></div></td></tr></table></div></p>
+<h3 id="function">function</h3>
+<p><code>Lua</code> 中的函数使用 <code>function</code> 关键字声明.以 <code>end</code> 关键字结束. 函数的结构如下:
+<div class="language-lua highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nv">optionalFunctionScope</span><span class="w"> </span><span class="kr">function</span><span class="w"> </span><span class="nf">functionName</span><span class="p">(</span><span class="nv">argument1</span><span class="p">,</span><span class="w"> </span><span class="nv">argument2</span><span class="o">..</span><span class="p">.,</span><span class="w"> </span><span class="nv">argumentn</span><span class="p">)</span>
+<span class="w">    </span><span class="nv">functionBody</span>
+<span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="nv">result1</span><span class="p">,</span><span class="w"> </span><span class="nv">result2</span><span class="o">..</span><span class="p">.,</span><span class="w"> </span><span class="nv">resultn</span>
+<span class="kr">end</span>
+</code></pre></div></td></tr></table></div></p>
+<ul>
+<li><code>optionalFunctionScope</code>: 可选部分, 函数的作用域. 默认为全局函数, 使用 <code>local</code> 关键字声明局部函数.</li>
+<li><code>functionName</code>: 函数名, 调用函数时所使用的标识符.</li>
+<li><code>argument1, argument2..., argumentn</code>: 可选部分, 传递给函数的参数. 参数的数量可以是任意多.</li>
+<li><code>functionBody</code>: 函数体, 函数需要执行的代码语句块.</li>
+<li><code>result1, result2..., resultn</code>: 可选部分, 函数的返回值. 返回值的数量可以是任意多.</li>
+</ul>
+<p>例如:
+<div class="language-lua highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">-- 定义局部函数 calculate, 接受两个参数 a b, 计算其相加,相减以及相乘的值并返回</span>
+<span class="kd">local</span><span class="w"> </span><span class="kr">function</span><span class="w"> </span><span class="nf">calculate</span><span class="p">(</span><span class="nv">a</span><span class="p">,</span><span class="w"> </span><span class="nv">b</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">local</span><span class="w"> </span><span class="nv">add</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">b</span>
+<span class="w">    </span><span class="kd">local</span><span class="w"> </span><span class="nv">sub</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">b</span>
+<span class="w">    </span><span class="kd">local</span><span class="w"> </span><span class="nv">mul</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">b</span>
+<span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="nv">add</span><span class="p">,</span><span class="w"> </span><span class="nv">sub</span><span class="p">,</span><span class="w"> </span><span class="nv">mul</span>
+<span class="kr">end</span>
+
+<span class="kd">local</span><span class="w"> </span><span class="nv">addResult</span><span class="p">,</span><span class="w"> </span><span class="nv">subResult</span><span class="p">,</span><span class="w"> </span><span class="nv">mulResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">calculate</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nv">addResult</span><span class="p">,</span><span class="w"> </span><span class="nv">subResult</span><span class="p">,</span><span class="w"> </span><span class="nv">mulResult</span><span class="p">)</span><span class="w">                       </span><span class="c1">-- 输出 25 15 100</span>
+</code></pre></div></td></tr></table></div></p>
+<p><code>Lua</code> 支持可变参数, 函数可以接受可变数量的参数, 在参数列表中使用 <code>...</code> 进行声明:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>...</code> 是可变参数表达式, 表示一个动态的参数列表. <code>...</code> 本身并不是一个表，而是一个特殊的语法结构.
+必须显式地把 <code>...</code> 转换成表才能访问这些参数.</p>
+</div>
+<div class="language-lua highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kd">local</span><span class="w"> </span><span class="kr">function</span><span class="w"> </span><span class="nf">average</span><span class="p">(...)</span>
+<span class="w">    </span><span class="kd">local</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="kd">local</span><span class="w"> </span><span class="nv">args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{...}</span><span class="w">                 </span><span class="c1">-- 显式转换可变参数 `...` 至表 args</span>
+
+<span class="w">    </span><span class="kr">if</span><span class="w"> </span><span class="o">#</span><span class="nv">args</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="kr">return</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="kr">end</span><span class="w">    </span><span class="c1">-- #args 返回表的长度, 即参数数量. 判断是否有参数传入</span>
+
+<span class="w">    </span><span class="kr">for</span><span class="w"> </span><span class="nv">_</span><span class="p">,</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="nb">ipairs</span><span class="p">(</span><span class="nv">args</span><span class="p">)</span><span class="w"> </span><span class="kr">do</span>
+<span class="w">        </span><span class="nv">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">value</span>
+<span class="w">    </span><span class="kr">end</span>
+
+<span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="o">#</span><span class="nv">args</span><span class="w">   </span>
+<span class="kr">end</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nf">average</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">))</span><span class="w">           </span><span class="c1">-- 输出 2.0</span>
+<span class="nb">print</span><span class="p">(</span><span class="nf">average</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">))</span><span class="w">    </span><span class="c1">-- 输出 4.2</span>
+<span class="nb">print</span><span class="p">(</span><span class="nf">average</span><span class="p">())</span><span class="w">                  </span><span class="c1">-- 输出 0</span>
+</code></pre></div></td></tr></table></div>
+<p><code>Lua</code> 支持函数式编程, 函数可以作为变量赋值, 参数传递以及结果返回:</p>
+<div class="language-lua highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">-- 函数可以作为变量赋值</span>
+<span class="c1">-- 使用匿名函数定义加法操作</span>
+<span class="kd">local</span><span class="w"> </span><span class="kr">function</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="nv">a</span><span class="p">,</span><span class="w"> </span><span class="nv">b</span><span class="p">)</span>
+<span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">b</span>
+<span class="kr">end</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nf">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">))</span><span class="w">    </span><span class="c1">-- 输出 3</span>
+
+<span class="c1">-- 函数可以作为参数传递</span>
+<span class="c1">-- 定义一个接受函数作为参数的高阶函数</span>
+<span class="kd">local</span><span class="w"> </span><span class="kr">function</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span><span class="nv">func</span><span class="p">,</span><span class="w"> </span><span class="nv">x</span><span class="p">,</span><span class="w"> </span><span class="nv">y</span><span class="p">)</span>
+<span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="nv">x</span><span class="p">,</span><span class="w"> </span><span class="nv">y</span><span class="p">)</span>
+<span class="kr">end</span>
+
+<span class="kd">local</span><span class="w"> </span><span class="kr">function</span><span class="w"> </span><span class="nf">sub</span><span class="p">(</span><span class="nv">a</span><span class="p">,</span><span class="w"> </span><span class="nv">b</span><span class="p">)</span>
+<span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">b</span>
+<span class="kr">end</span>
+
+<span class="c1">-- 将 sub 函数作为参数传递给 apply 函数</span>
+<span class="nb">print</span><span class="p">(</span><span class="nf">apply</span><span class="p">(</span><span class="nv">sub</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">))</span><span class="w">    </span><span class="c1">-- 输出 7</span>
+
+<span class="c1">-- 函数可以作为返回结果</span>
+<span class="c1">-- 定义 createMultiplier 函数, 返回一个新的函数, 该函数会将其参数与给定的 factor 相乘</span>
+<span class="kd">local</span><span class="w"> </span><span class="kr">function</span><span class="w"> </span><span class="nf">createMultiplier</span><span class="p">(</span><span class="nv">factor</span><span class="p">)</span>
+<span class="w">    </span><span class="c1">-- 返回一个捕获 factor 的匿名函数</span>
+<span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="nv">x</span><span class="p">)</span>
+<span class="w">        </span><span class="kr">return</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">factor</span>
+<span class="w">    </span><span class="kr">end</span>
+<span class="kr">end</span>
+
+<span class="c1">-- 定义 double 函数, 该函数会将其参数乘2返回</span>
+<span class="kd">local</span><span class="w"> </span><span class="nv">double</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">createMultiplier</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nf">double</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span><span class="w">    </span><span class="c1">-- 输出 20</span>
+</code></pre></div></td></tr></table></div>
+<details class="note">
+<summary>上方 Lua 代码对应的 C# 代码</summary>
+<div class="language-cs highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// 函数可以作为变量赋值</span>
+<span class="c1">// 使用委托定义加法操作</span>
+<span class="n">Func</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Add</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">Add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">));</span><span class="w">    </span><span class="c1">// 输出 3</span>
+
+<span class="c1">// 函数可以作为参数传递</span>
+<span class="c1">// 定义一个接受函数作为参数的高阶函数</span>
+<span class="kt">double</span><span class="w"> </span><span class="nf">Apply</span><span class="p">(</span><span class="n">Func</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">func</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">Func</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Sub</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+
+<span class="c1">// 将 Sub 函数作为参数传递给 Apply 函数</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">Apply</span><span class="p">(</span><span class="n">Sub</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">));</span><span class="w">    </span><span class="c1">// 输出 7</span>
+
+<span class="c1">// 函数可以作为返回结果</span>
+<span class="c1">// 定义 CreateMultiplier 函数, 返回一个新的函数, 该函数会将其参数与给定的 factor 相乘</span>
+<span class="n">Func</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">CreateMultiplier</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">factor</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="c1">// 返回一个捕获 factor 的匿名函数</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">factor</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 定义 DoubleFunc 函数, 该函数会将其参数乘2返回</span>
+<span class="kt">var</span><span class="w"> </span><span class="n">DoubleFunc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CreateMultiplier</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">DoubleFunc</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span><span class="w">    </span><span class="c1">// 输出 20</span>
+</code></pre></div></td></tr></table></div>
+</details>
+<h2 id="_2">类型转换</h2>
+<p><code>Lua</code> 提供以下三种显式类型转换函数:</p>
+<ul>
+<li><code>tonumber(e)</code>: 将 <code>string</code> 类型的 <code>e</code> 转换为 <code>number</code>, 失败会返回 <code>nil</code>.</li>
+<li><code>tonumber(e, base)</code>: 将 <code>string</code> 类型的 <code>e</code> 从指定进制 <code>base</code> 转换为十进制 的 <code>number</code>, 失败会返回 <code>nil</code>.</li>
+<li><code>tostring(v)</code>: 将任何类型 <code>v</code> 转换为 <code>string</code>, 函数和表会返回其内存地址.</li>
+</ul>
+<p>以下是使用示例:
+<div class="language-lua highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kd">local</span><span class="w"> </span><span class="kr">function</span><span class="w"> </span><span class="nf">printToNumber</span><span class="p">(</span><span class="nv">e</span><span class="p">,</span><span class="w"> </span><span class="nv">base</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">local</span><span class="w"> </span><span class="nv">castedResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">tonumber</span><span class="p">(</span><span class="nv">e</span><span class="p">)</span>
+
+<span class="w">    </span><span class="kr">if</span><span class="w"> </span><span class="nv">base</span><span class="w"> </span><span class="kr">then</span>
+<span class="w">        </span><span class="nv">castedResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">tonumber</span><span class="p">(</span><span class="nv">e</span><span class="p">,</span><span class="w"> </span><span class="nv">base</span><span class="p">)</span>
+<span class="w">    </span><span class="kr">end</span>
+
+<span class="w">    </span><span class="kr">if</span><span class="w"> </span><span class="nb">type</span><span class="p">(</span><span class="nv">castedResult</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;nil&quot;</span><span class="w"> </span><span class="kr">then</span>
+<span class="w">        </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;type: nil, cast failed&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kr">else</span>
+<span class="w">        </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;type: &quot;</span><span class="w"> </span><span class="o">..</span><span class="w"> </span><span class="nb">type</span><span class="p">(</span><span class="nv">castedResult</span><span class="p">)</span><span class="w"> </span><span class="o">..</span><span class="w"> </span><span class="s2">&quot; value: &quot;</span><span class="w"> </span><span class="o">..</span><span class="w"> </span><span class="nv">castedResult</span><span class="p">)</span>
+<span class="w">    </span><span class="kr">end</span>
+<span class="kr">end</span>
+
+<span class="nf">printToNumber</span><span class="p">(</span><span class="s2">&quot;123&quot;</span><span class="p">)</span><span class="w">        </span><span class="c1">-- 输出 type: number value: 123</span>
+<span class="nf">printToNumber</span><span class="p">(</span><span class="s2">&quot;123.45&quot;</span><span class="p">)</span><span class="w">     </span><span class="c1">-- 输出 type: number value: 123.45</span>
+<span class="nf">printToNumber</span><span class="p">(</span><span class="s2">&quot;-123&quot;</span><span class="p">)</span><span class="w">       </span><span class="c1">-- 输出 type: number value: -123</span>
+<span class="nf">printToNumber</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span><span class="w">          </span><span class="c1">-- 输出 type: number value: 0</span>
+
+<span class="nf">printToNumber</span><span class="p">(</span><span class="s2">&quot;FF&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="p">)</span><span class="w">     </span><span class="c1">-- 输出 type: number value: 255</span>
+<span class="nf">printToNumber</span><span class="p">(</span><span class="s2">&quot;1010&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w">    </span><span class="c1">-- 输出 type: number value: 10</span>
+<span class="nf">printToNumber</span><span class="p">(</span><span class="s2">&quot;1010&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w">    </span><span class="c1">-- 输出 type: number value: 30</span>
+<span class="nf">printToNumber</span><span class="p">(</span><span class="s2">&quot;3&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w">       </span><span class="c1">-- 输出 type: nil, cast failed</span>
+
+<span class="nf">printToNumber</span><span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="p">)</span><span class="w">        </span><span class="c1">-- 输出 type: nil, cast failed</span>
+<span class="nf">printToNumber</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="w">           </span><span class="c1">-- 输出 type: nil, cast failed</span>
+<span class="nf">printToNumber</span><span class="p">(</span><span class="kc">nil</span><span class="p">)</span><span class="w">          </span><span class="c1">-- 输出 type: nil, cast failed</span>
+<span class="nf">printToNumber</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w">         </span><span class="c1">-- 输出 type: nil, cast failed</span>
+
+<span class="c1">---------------------------------------------------------------------------------------------</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">tostring</span><span class="p">(</span><span class="mi">123</span><span class="p">))</span><span class="w">               </span><span class="c1">-- 输出 123</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">tostring</span><span class="p">(</span><span class="mf">123.45</span><span class="p">))</span><span class="w">            </span><span class="c1">-- 输出 123.45</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">tostring</span><span class="p">(</span><span class="o">-</span><span class="mi">123</span><span class="p">))</span><span class="w">              </span><span class="c1">-- 输出 -123</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">tostring</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="w">                 </span><span class="c1">-- 输出 0</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">tostring</span><span class="p">(</span><span class="kc">nil</span><span class="p">))</span><span class="w">               </span><span class="c1">-- 输出 nil</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">tostring</span><span class="p">(</span><span class="kc">true</span><span class="p">))</span><span class="w">              </span><span class="c1">-- 输出 true</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">tostring</span><span class="p">(</span><span class="kc">false</span><span class="p">))</span><span class="w">             </span><span class="c1">-- 输出 false</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">tostring</span><span class="p">(</span><span class="kr">function</span><span class="p">()</span><span class="w"> </span><span class="kr">end</span><span class="p">))</span><span class="w">    </span><span class="c1">-- 输出 function: 000002B0EBF58730, 内存地址可能不同</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">tostring</span><span class="p">({</span><span class="s2">&quot;some stuff&quot;</span><span class="p">}))</span><span class="w">    </span><span class="c1">-- 输出 table: 000002B0EBF563C0, 内存地址可能不同</span>
+</code></pre></div></td></tr></table></div></p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最后更新">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年9月16日 17:01:55 UTC">2025年9月16日</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="创建日期">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年9月16日 16:53:07 UTC">2025年9月16日</span>
+  </span>
+
+    
+    
+      
+  
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="贡献者">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4"/></svg>
+      
+    </span>
+    <nav>
+      
+        <a href="mailto:534310154@qq.com">ClearZer0</a>
+    </nav>
+  </span>
+
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+    <div class="md-footer-meta md-typeset">
+        <div class="md-footer-meta__inner md-grid">
+            <div class="md-copyright">
+                Made with
+                <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+                    Material for MkDocs
+                </a>
+            </div>
+            <a href="https://icp.gov.moe/?keyword=20221437" class="md-copyright" target="_blank" rel="noopener">
+                萌ICP备20221437号
+            </a>
+        </div>
+    </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../..", "features": ["content.code.copy", "content.tabs.link"], "search": "../../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
