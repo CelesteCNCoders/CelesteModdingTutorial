@@ -74,7 +74,7 @@ nav:
     - "Dialog": "mapping/dialog.md"
   - "皮肤 Mod 制作":
     - "Graphics Dump": "shared/graphics_dump.md"
-  - "Code Mod 制作":
+  - "Code Mod 制作 (Legacy)":
     - 首页: "code_modding/index.md"
     - 推荐入门顺序:
         - 前言: "code_modding/basics/index.md"
