@@ -45,3 +45,5 @@
 * 迁移至 [CelesteModdingTutorial](https://github.com/CelesteCNCoders/CelesteModdingTutorial) 仓库
 * 重构项目结构
 
+### 2025.10.25
+* 编写 [基础 - 游戏框架](../basics/framework/monocle.md)
