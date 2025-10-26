@@ -1,9 +1,15 @@
 # EC 架构
 
-在这里我会简单介绍一下整个蔚蓝是怎么组织起来的.  
-首先蔚蓝基于 `Monocle` 引擎, 这是 `matt` 自己开发的一个引擎, 所以别指望你能在网上找到它的教程(,
-其次 `Monocle` 依赖于 `XNA` (已停止维护) 或者 `FNA` (`XNA` 框架的重新实现),
-而`XNA` 提供的 api 都非常原始, 甚至连最基本的场景组织之类的都没有, 所以 `Monocle` 就是来实现这些的.  
+!!!info
+    这一篇主要介绍概念, 游戏主循环与生命周期可以在[这里](life_cycle.md)阅读.
+
+`Monocle` 引擎基于 `EC (Entity-Component)` 架构, 它是游戏的一种组织方式的实现.
+`Monocle` 引擎主要由下面几个部分组成:
+
+* `Engine`: 游戏的核心.
+* `Scene`: 场景, 所有的实体, 即 `Entity` 都存在于场景中.
+* `Entity`: 实体, 由 `Scene` 管理并具有生命周期的对象.
+* `Component`: 组件, 为实体提供可复用的通用功能模块.
 
 通常来说一个正在运行的 `Monocle` 游戏的结构就像:
 ```mermaid
@@ -20,29 +26,60 @@ C --- I[Component C];
 C --- J[Component ...];
 ```
 
-- `Scene` 表示一个场景, 比如主界面场景, pico8 场景, 以及最常见的 gameplay 场景.  
-- `Entity` 表示一个实体, 比如说玛德琳就是一个实体, 一个弹球是一个实体, 一个泡泡是一个实体.
-- `Component` 表示一个组件, 它附加与实体之上, 通常我们能直接看到的只有图片组件, 比如岩浆块的贴图就是由 `Image` 组件来展现的, 玩家的动画由 `Sprite` 组件展现.  
+## Engine
 
-!!! info
-    以上这个架构我们就称为 `EC` 架构, 它是游戏的一种组织方式的实现.  
+`Engine` 是整个游戏的核心, 负责管理场景与游戏主循环.            
+通常我们并不需要直接操作 `Engine`, 大部分操作都可以在 `EC` 层完成.
 
-通常地, 每过 `1/60` 秒, `Engine` 就会被调用它的 `Update()` 函数用来更新游戏逻辑,
-`Engine.Update()` 内部会再次调用 `Scene` 的 `Update()` 函数,
-`Scene.Update()` 内部会遍历它所有的 `Entity` 并调用它们的 `Update()` 函数,
-`Entity.Update()` 内部还会遍历它所有的 `Component` 并调用它们的 `Update()` 函数.  
+不过 `Engine` 有一些属性我们可能会访问:
 
-那么自然, `Player.Update()` 就是玛德琳每帧的更新逻辑所在的地方了. 现在我们做一个小 demo, 将玩家的冲刺数量锁死为单冲.  
+* `Engine.DeltaTime`: 上一帧到这一帧的时间间隔, 单位是秒, 通常约为 `1/60`.
+* `Engine.TimeRate`: 引擎的时间流速倍率, 默认为 `1.0`.
+* `Engine.Scene`: 当前正在运行的场景.
+
+## Scene
+
+`Scene` 是游戏的场景, 同一时间只有一个 `Scene` 运行. 游戏中的主界面, 关卡, Pico8 等都是不同的场景.          
+通常我们也不需要直接操作 `Scene` <del>(草</del>. 
+
+`Scene` 的一些属性与方法我们在开发时会经常使用:
+
+* `Entities`: 被添加到场景的实体列表.
+* `Paused`: 是否暂停, 暂停时不会执行实体的更新方法 `Update()`.
+* `TimeActive`: 场景开始后经过的时间, 单位是秒.
+* `Tracker`: 快速查找场景中的实体与组件, 具体可以在[这里](../application/tracker.md)阅读.
+* `Add(Entity entity)`: 向场景中添加实体 `entity`.
+* `Remove(Entity entity)`: 移除场景中的实体 `entity`.
+* `OnInterval(float interval)`: 每隔指定时间 `interval` 返回一次 `true`, 用于定时执行逻辑.
 
 ## Entity
 
-`Entity` 本身有四个公开的字段:
+`Entity` 是我们大部分时候打交道的对象, 玛德琳, 刺, 草莓等等都是不同的实体.
 
-- `Active`, 该 `bool` 字段表示该 `Entity` 是否 "存活", 否则为 "失活", "失活" 的 `Entity` 将不会被调用 `Update` 方法直到 `Active` 为 `true`
-- `Collidable`, 该 `bool` 字段表示该 `Entity` 是否 "可碰撞", 不可碰撞的实体与任何实体进行碰撞检测时都会返回 `false`, 所以你可以将它设为`false`来禁用它的碰撞箱
-- `Visible`, 该 `bool` 字段表示该 `Entity` 是否 "可见", 不可见的实体不会被调用 `Render` 方法, 注意即使不可见它的碰撞箱依然存在.
-- `Position`, 该 `Vector2` 字段表示该 `Entity` 的位置, 注意这个位置相对的坐标系是不同的, 对于 HUD 实体来说它的坐标系是一个 1922 x 1092 的原点左上角的屏幕坐标, 对于 gameplay 实体来说它是相对于世界原点的分度值为 1px 的坐标. 这个行为可以通过后面所说的 `Tag` 来配置.
+`Entity` 的一些属性与方法我们在开发时会经常使用:
+
+* `Scene`: 实体所属的场景.
+* `Components` 实体被附加的组件列表.
+* `Position`: 实体在场景中的位置坐标.
+* `Tag`: 实体所拥有的标签.
+* `Active`: 是否激活, 不激活时不会执行实体的更新方法 `Update()`.
+* `Visible`: 是否可见, 不可见时不会执行实体的渲染方法 `Render()`.
+* `Collidable` 是否可碰撞, 不可碰撞时所有关于该实体的碰撞检测都会返回 `false`.
+* `Add(Component component)`: 向实体添加组件 `component`.
+* `Remove(Component component)`: 移除实体的组件 `component`.
+* `RemoveSelf()`: 从所属场景中移除自身.
+* `SceneAs<T>()`: 将所属场景转换为类型 `T` 返回.
 
 ## Component
 
-## Scene
+`Component` 是可以附加于实体的可复用功能模块, `Sprite`, `Tween`, `Coroutine`等都是不同的组件.
+
+`Component` 的一些属性与方法我们在开发时会经常使用:
+
+* `Scene`: 组件所属的实体的所属场景.
+* `Entity`: 组件所属的实体.
+* `Active`: 是否激活, 不激活时不会执行组件的更新方法 `Update()`.
+* `Visible`: 是否可见, 不可见时不会执行组件的渲染方法 `Render()`.
+* `RemoveSelf()`: 从所属实体中移除自身.
+* `SceneAs<T>()`: 将所属场景转换为类型 `T` 返回.
+* `EntityAs<T>()`: 将所属实体转换为类型 `T` 返回.
