@@ -174,7 +174,7 @@ graph LR
 
 组件被添加到实体后会被依次调用 `Update()` 与 `Render()`, 直到被移除出实体, 或实体被移除出场景, 或场景结束.
 
-当组件被 `Entity.Remove(Component component)` 方法移除出实体时会调用 `Removed(Entity entity)`.
+当组件被 `Entity.Remove(Component component)` 方法移除出实体时会调用 `Removed(Entity entity)`.          
 组件所属实体的 `Entity.Removed()` 会同步调用所有组件的 `EntityRemoved(Scene scene)` 方法.     
 组件所属场景的 `Scene.End()` 会同步调用所有组件的 `SceneEnd(Scene scene)` 方法.
 !!!info
