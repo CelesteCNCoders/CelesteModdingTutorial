@@ -9,6 +9,10 @@
 
 这个循环会一直重复执行, 直到退出游戏.
 
+!!! info
+    游戏中的冻结帧就会临时不执行关卡的 `Update()` 只进行 `Render()`, 使得游戏看上去被 "冻结了".  
+    此外游戏中的冲刺方向辅助也会不执行 `Update()`, 这部分逻辑甚至是在 `Monocle` 的层级上做的<del>(或许算个屎山代码)</del>
+
 ### 调用层级
 
 `Scene` 的 `Update()` 和 `Render()` 的调用方式不同:
@@ -135,9 +139,11 @@ graph LR
 
 当实体被 `Scene.Remove(Entity entity)` 方法移除出场景时会调用 `Removed(Scene scene)`, 可以在这里做一些清理工作.     
 实体所属场景的 `Scene.End()` 会同步调用所有实体的 `SceneEnd(Scene scene)` 方法.  
-!!!info
+
+!!! info
     实体被 `Scene.Remove` 移除出场景后不会调用 `SceneEnd` 方法, 因为场景结束时实体已经不在场景中了.     
-    实体所属场景结束时只会调用 `SceneEnd` 方法, 并不会把实体从场景中移除, 所以一般清理相关的代码会在 `Removed` 与 `SceneEnd` 中都写一份. 
+    实体所属场景结束时只会调用 `SceneEnd` 方法, 并不会把实体从场景中移除, 所以一般清理相关的代码会在 `Removed` 与 `SceneEnd` 中都写一份.  
+    此外要注意的是 `Scene.Remove` 调用后只是把实体加入 "移除队列", 当在帧末尾时才会进行实际的移除任务. 下述的组件也是如此.
 
 ### Component
 
