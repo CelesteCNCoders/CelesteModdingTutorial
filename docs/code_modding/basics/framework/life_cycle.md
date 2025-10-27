@@ -143,7 +143,8 @@ graph LR
 !!! info
     实体被 `Scene.Remove` 移除出场景后不会调用 `SceneEnd` 方法, 因为场景结束时实体已经不在场景中了.     
     实体所属场景结束时只会调用 `SceneEnd` 方法, 并不会把实体从场景中移除, 所以一般清理相关的代码会在 `Removed` 与 `SceneEnd` 中都写一份.  
-    此外要注意的是 `Scene.Remove` 调用后只是把实体加入 "移除队列", 当在帧末尾时才会进行实际的移除任务. 下述的组件也是如此.
+    此外要注意的是 `Scene.Remove` 调用后只是把实体加入 "移除队列", 下一帧开始时才会进行实际的移除任务.
+    下述的组件则是在所有组件完成更新后才会被实际移除.
 
 ### Component
 
@@ -173,7 +174,7 @@ graph LR
 
 组件被添加到实体后会被依次调用 `Update()` 与 `Render()`, 直到被移除出实体, 或实体被移除出场景, 或场景结束.
 
-当组件被 `Entity.Remove(Component component)` 方法移除出实体时会调用 `Removed(Entity entity)`.
+当组件被 `Entity.Remove(Component component)` 方法移除出实体时会调用 `Removed(Entity entity)`.          
 组件所属实体的 `Entity.Removed()` 会同步调用所有组件的 `EntityRemoved(Scene scene)` 方法.     
 组件所属场景的 `Scene.End()` 会同步调用所有组件的 `SceneEnd(Scene scene)` 方法.
 !!!info
