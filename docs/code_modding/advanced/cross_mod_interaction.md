@@ -2,55 +2,10 @@
 
 有时我们会希望使用其他 Mod 或提供自己 Mod 的功能, 这一节将介绍 `ModInterop` 的使用及一些常见的交互方法.
 
-## 依赖管理
-
-在与其他 Mod 交互前, 我们需要在 `everest.yaml` 中添加相应的依赖.
-这里我们以 `GravityHelper` 为例:
-
-```yaml title="everest.yaml"
-- Name: MyCelesteMod
-  Version: 0.1.0
-  DLL: MyCelesteMod.dll
-  Dependencies:
-    - Name: EverestCore
-      Version: 1.4465.0
-  OptionalDependencies:
-    - Name: GravityHelper
-      Version: 1.2.20
-```
-
-`everest.yaml` 中的依赖分为以下两种:
-
-- `Dependencies` 必需依赖: 会在你的 Mod 加载前完成加载.
-- `OptionalDependencies` 可选依赖: 只有在被启用时加载, 未启用则会忽略.
-
-通常为了保持 Mod 的轻量性与灵活性, 建议尽可能减少必需依赖的数量.
-如果一个依赖是可选的, 我们应该在使用被依赖的功能前检查它是否被成功加载.
-
-一个可能的实现如下:
-
-```cs title="MyCelesteModModule.cs"
-public static bool GravityHelperLoaded;
-
-public override void Load()
-{
-    // 获取 GravityHelperModule 的元数据
-    EverestModuleMetadata gravityHelperMetadata = new()
-    {
-        Name = "GravityHelper",
-        Version = new Version(1, 2, 20)
-    };
-    
-    // 判断 GravityHelper 是否成功加载
-    GravityHelperLoaded = Everest.Loader.DependencyLoaded(gravityHelperMetadata);
-}
-```
-
-这样我们就能在使用被依赖的功能前检查 `GravityHelperLoaded` 以确保被依赖的 Mod 成功加载.
-
-
-
 ## ModInterop
+
+!!!info
+    在与其他 CodeMod 交互前我们需要添加对应的可选依赖, 可以在[这里](../basics/core_system/everest_module.md#_2)阅读.
 
 `ModInterop` 是 `MonoMod` 的一项十分强大的功能, 其提供了一种标准化的方式以实现不同 Mod 间的交互, 几乎可以视为我们拥有的最接近 "官方" 的 API.
 
@@ -223,8 +178,8 @@ Everest 会将所有 Code Mod 的程序集使用 MonoMod 进行 patch 处理后�
     在引用之前我们需要确认目标 Mod 在 `Cache` 中是否存在, 以上面引用的 Mod 为例. `Cache` 中应该存在:
 
     - GravityHelper.GravityHelper.dll
-    - ExtendedVariantMode.ExtendedVariantMode.dll
-    ` FrostHelper.FrostTempleHelper.dll
+    - ExtendedVariantMode.ExtendedVariantMode.dll       
+    - FrostHelper.FrostTempleHelper.dll
 
     我们填写目标 Mod 在 `Cache` 中名称的前半段就行.
 
@@ -248,7 +203,7 @@ public static PropertyInfo PlayerGravityComponentProperty;
 public static PropertyInfo IsPlayerInvertedProperty;
 public static MethodInfo SetPlayerGravityMethod;
 
-public override void Load()
+public override void Initialize()
 {
     // 获取 GravityHelperModule 的元数据
     EverestModuleMetadata gravityHelperMetadata = new()

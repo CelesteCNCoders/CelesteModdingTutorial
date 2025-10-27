@@ -47,3 +47,7 @@
 
 ### 2025.10.25
 * 编写 [基础 - 游戏框架](../basics/framework/monocle.md)
+
+### 2025.10.27
+* 编写 [基础 - 核心系统 - EverestModule](../basics/core_system/everest_module.md)
+* 移动 [一些准备 - 基础环境配置](../coding_setup/basic_env.md) 与 [进阶 - 跨 Mod 交互](../advanced/cross_mod_interaction.md) 的一些内容至 [基础 - 核心系统 - EverestModule](../basics/core_system/everest_module.md) 以优化排版
