@@ -245,6 +245,8 @@ public class SampleTrigger : Trigger
 
     public override void Added(Scene scene)
     {
+        base.Added(scene);
+
         // 判断 GravityHelper 是否成功加载
         if (!MyCelesteModModule.GravityHelperLoaded)
             throw new Exception("SampleTrigger requires GravityHelper as a dependency!")
