@@ -195,7 +195,7 @@ Everest 会将所有 Code Mod 的程序集使用 MonoMod 进行 patch 处理后�
 
 我们也可以通过 `EverestModule` 反射动态地访问我们希望交互的 Mod 的程序集, 而无需直接引用目标 Mod 的程序集.
 
-下面我们以 [`GravityHelper`](https://github.com/swoolcock/GravityHelper) 为例:
+下面我们以 [`GravityHelper`](https://github.com/swoolcock/GravityHelper){:target="_blank"} 为例:
 ```cs title="MyCelesteModModule.cs"
 public static bool GravityHelperLoaded;
 
