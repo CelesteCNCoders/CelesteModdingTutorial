@@ -247,12 +247,7 @@ public class SampleTrigger : Trigger
     {
         // 判断 GravityHelper 是否成功加载
         if (!MyCelesteModModule.GravityHelperLoaded)
-        {
-            Logger.Warn("MyCelesteMod", "SampleTrigger requires GravityHelper as a dependency!")
-            
-            // 加载失败移除自身
-            RemoveSelf();
-        }
+            throw new Exception("SampleTrigger requires GravityHelper as a dependency!")
     }
 
     public override void OnEnter(Player player)
