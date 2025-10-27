@@ -241,19 +241,25 @@ public override void Initialize()
 [CustomEntity("MyCelesteMod/SampleTrigger")]
 public class SampleTrigger : Trigger
 {
-    public SampleTrigger(EntityData data, Vector2 offset)
-        : base(data, offset)
+    public SampleTrigger(EntityData data, Vector2 offset) : base(data, offset){}
+
+    public override void Added(Scene scene)
     {
         // 判断 GravityHelper 是否成功加载
         if (!MyCelesteModModule.GravityHelperLoaded)
         {
-            throw new Exception("SampleTrigger requires GravityHelper as a dependency!")
+            Logger.Warn("MyCelesteMod", "SampleTrigger requires GravityHelper as a dependency!")
+            return;
         }
     }
 
     public override void OnEnter(Player player)
     {
         base.OnEnter(player);
+
+        // GravityHelper 加载失败不做任何事
+        if (!MyCelesteModModule.GravityHelperLoaded)
+            return;
 
         // 设置玩家重力
         object[] parameters = [2, 1f, false];

@@ -105,6 +105,22 @@ Logger.Log(LogLevel.Error, "MyCelesteMod", "Fatal error!");
 (01/19/2025 15:19:00) [Everest] [Error] [MyCelesteMod] Fatal error!
 ```
 
+!!!info
+    `Logger` 也提供了一些便利的方法可以让我们不用填写 `Logger.Log()` 中的 `LogLevel`, 比如下面的其实是一样的:
+    ```cs
+    Logger.Log(LogLevel.Info, "MyCelesteMod", "An info!")
+    Logger.Info("MyCelesteMod", "An info!")  
+    ```
+
+    每个 `LogLevel` 都有对应的便利方法:
+    ```cs
+    Logger.Verbose(string tag, string str)
+    Logger.Debug(string tag, string str)
+    Logger.Info(string tag, string str)
+    Logger.Warn(string tag, string str)
+    Logger.Error(string tag, string str)
+    ```
+
 ## 附加到进程
 
 最常见的 debug 手段是通过 `Logger.Log()`, 能解决大部分问题, 但当项目做大, 嵌套变多, `Logger` 输出的信息已经满足不了我们的时候(甚至我们都不知道这个 bug 哪儿来的), 我们一般就要使用断点来调试, 步骤如下:
