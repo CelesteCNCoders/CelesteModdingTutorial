@@ -249,17 +249,15 @@ public class SampleTrigger : Trigger
         if (!MyCelesteModModule.GravityHelperLoaded)
         {
             Logger.Warn("MyCelesteMod", "SampleTrigger requires GravityHelper as a dependency!")
-            return;
+            
+            // 加载失败移除自身
+            RemoveSelf();
         }
     }
 
     public override void OnEnter(Player player)
     {
         base.OnEnter(player);
-
-        // GravityHelper 加载失败不做任何事
-        if (!MyCelesteModModule.GravityHelperLoaded)
-            return;
 
         // 设置玩家重力
         object[] parameters = [2, 1f, false];
