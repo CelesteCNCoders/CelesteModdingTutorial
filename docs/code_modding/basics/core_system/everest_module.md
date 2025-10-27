@@ -20,7 +20,7 @@
 * `DLL`: 这是我们 Mod 的程序集路径, 对于 CodeMod 是必需的.
 * `Dependencies`: 这是我们 Mod 所依赖的其他 Mod 列表, 里面填写的是其他 Mod 的 `everest.yaml` 中的元数据, 即 `Name` 与 `Version`.     
 
-通常对于 CodeMod 来说只依赖版本为 `1.5577.0` 的 `EverestCore` 就可以.     
+通常对于 CodeMod 来说只依赖版本为 `1.5577.0` 及以上的 `EverestCore` 就可以.     
 想使用新版本 `Everest` 所提供的功能需要手动指定 `EverestCore` 的版本, 可以在[这里](https://github.com/EverestAPI/Everest/releases){:target="_blank"}进行查阅.
 
 ## EverestModule
