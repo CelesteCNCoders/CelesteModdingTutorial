@@ -5,11 +5,11 @@ site_description: Celeste Modding Tutorial
 site_author: Saplonily
 site_url: https://saplonily.top/celeste_modding_tutorial/
 
-# plugins:
-#   - search
-#   - git-authors
-#   - git-revision-date-localized:
-#       enable_creation_date: true
+plugins:
+  - search
+  - git-authors
+  - git-revision-date-localized:
+      enable_creation_date: true
 
 theme:
   name: material
@@ -74,7 +74,7 @@ nav:
     - "Dialog": "mapping/dialog.md"
   - "皮肤 Mod 制作":
     - "Graphics Dump": "shared/graphics_dump.md"
-  - "Code Mod 制作":
+  - "Code Mod 制作 (Legacy)":
     - 首页: "code_modding/index.md"
     - 推荐入门顺序:
         - 前言: "code_modding/basics/index.md"
