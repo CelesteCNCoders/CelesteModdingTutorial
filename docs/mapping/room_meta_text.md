@@ -447,7 +447,7 @@ Mountain:
 <!---- 这不是 ini 但是高亮还挺不错，不是么 -->
 ```ini title="English.txt"
 ThisIsMyName_MyFirstMod= Name of my first mod's maps!
-ThisIsMyName_MyFirstMod_0_MyFirstMap= Hi here's the chapter1!
+ThisIsMyName_MyFirstMod_0_MyFirstMap= Hi here's the chapter 1!
 ```
 
 ```ini title="Simplified Chinese.txt"
@@ -544,6 +544,20 @@ B 面显示混音以及混音作者的文字，加上 `_remix` 和 `_remix_artis
 ThisIsMyName_MyFirstMod_0_MyFirstMap_remix= 超好听混音
 ThisIsMyName_MyFirstMod_0_MyFirstMap_remix_artist= 不知名作者
 ```
+
+在 `Everest` 已提供的功能外，如果你安装了 `Maddie's Helping Hand` 这个 Mod，那么你可以将原本地图章节名称上方类似于 `第 1 章` 的文字进行更改：
+
+```ini
+maddiehelpinghand_chapternumber_(你的地图文件路径)= (章节序号名)
+```
+
+应用到前文所说的例子中，则应该看起来是这样：
+
+```ini
+maddiehelpinghand_chapternumber_ThisIsMyName_MyFirstMod_0_MyFirstMap= 章节 01
+```
+
+设置完成后你会发现在原版游戏地图中的 `第 1 章` 字样变成了设置的 `章节 01`，在一些情况下，这种独特的章节序号文字可以辅助你表达你的地图名字的特别之处，例如 `xxx 竞赛-比赛用图`。
 
 ----
 
