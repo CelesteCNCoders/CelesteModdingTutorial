@@ -105,7 +105,7 @@ graph LR
     即所有实体更新完成后调用.           
     有需要时可以订阅这个事件做一些跨帧的工作.
 
-场景开始时, `Engine` 会调用 `Scene.Begin()`, 然后场景每帧会依次调用 `Update()` 与 `Render()`, 直到场景结束.         
+场景开始时 `Engine` 会调用 `Scene.Begin()`, 然后场景每帧会依次调用 `Update()` 与 `Render()`, 直到场景结束.         
 场景结束时 `Engine` 会调用 `Scene.End()`, 然后调用新场景的 `Scene.Begin()`, 这样就完成了一次场景的切换.
 
 ### Entity

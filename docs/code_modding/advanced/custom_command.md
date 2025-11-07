@@ -80,7 +80,7 @@ public static void ForceSkipCutscene()
 
 可以在一些场景使用, 比如<del>不幸参加逆旅的神秘成语大会</del>:
 
-![summit_downside](images/custom_command/summit_downside.gif)
+![summit_downside](images/custom_command/summit_downside.png)
 
 这个命令可以设置玛德琳的亚像素:
 ```cs
