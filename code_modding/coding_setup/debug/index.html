@@ -3738,6 +3738,25 @@
 (01/19/2025 15:19:00) [Everest] [warn] [MyCelesteMod] This is a warn!
 (01/19/2025 15:19:00) [Everest] [Error] [MyCelesteMod] Fatal error!
 </code></pre></div></td></tr></table></div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><code>Logger</code> 也提供了一些便利的方法可以让我们不用填写 <code>Logger.Log()</code> 中的 <code>LogLevel</code>, 比如下面的其实是一样的:
+<div class="language-cs highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">Logger</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="n">LogLevel</span><span class="p">.</span><span class="n">Info</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;MyCelesteMod&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;An info!&quot;</span><span class="p">)</span>
+<span class="n">Logger</span><span class="p">.</span><span class="n">Info</span><span class="p">(</span><span class="s">&quot;MyCelesteMod&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;An info!&quot;</span><span class="p">)</span><span class="w">  </span>
+</code></pre></div></td></tr></table></div></p>
+<p>每个 <code>LogLevel</code> 都有对应的便利方法:
+<div class="language-cs highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">Logger</span><span class="p">.</span><span class="n">Verbose</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="n">tag</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">str</span><span class="p">)</span>
+<span class="n">Logger</span><span class="p">.</span><span class="n">Debug</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="n">tag</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">str</span><span class="p">)</span>
+<span class="n">Logger</span><span class="p">.</span><span class="n">Info</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="n">tag</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">str</span><span class="p">)</span>
+<span class="n">Logger</span><span class="p">.</span><span class="n">Warn</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="n">tag</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">str</span><span class="p">)</span>
+<span class="n">Logger</span><span class="p">.</span><span class="n">Error</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="n">tag</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">str</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div></p>
+</div>
 <h2 id="_2">附加到进程</h2>
 <p>最常见的 debug 手段是通过 <code>Logger.Log()</code>, 能解决大部分问题, 但当项目做大, 嵌套变多, <code>Logger</code> 输出的信息已经满足不了我们的时候(甚至我们都不知道这个 bug 哪儿来的), 我们一般就要使用断点来调试, 步骤如下:</p>
 <ul>
@@ -3824,7 +3843,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年9月16日 17:01:55 UTC">2025年9月16日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年10月27日 02:53:27 UTC">2025年10月27日</span>
   </span>
 
     
@@ -3844,11 +3863,12 @@
   <span class="md-source-file__fact">
     <span class="md-icon" title="贡献者">
       
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 5.5A3.5 3.5 0 0 1 15.5 9a3.5 3.5 0 0 1-3.5 3.5A3.5 3.5 0 0 1 8.5 9 3.5 3.5 0 0 1 12 5.5M5 8c.56 0 1.08.15 1.53.42-.15 1.43.27 2.85 1.13 3.96C7.16 13.34 6.16 14 5 14a3 3 0 0 1-3-3 3 3 0 0 1 3-3m14 0a3 3 0 0 1 3 3 3 3 0 0 1-3 3c-1.16 0-2.16-.66-2.66-1.62a5.54 5.54 0 0 0 1.13-3.96c.45-.27.97-.42 1.53-.42M5.5 18.25c0-2.07 2.91-3.75 6.5-3.75s6.5 1.68 6.5 3.75V20h-13zM0 20v-1.5c0-1.39 1.89-2.56 4.45-2.9-.59.68-.95 1.62-.95 2.65V20zm24 0h-3.5v-1.75c0-1.03-.36-1.97-.95-2.65 2.56.34 4.45 1.51 4.45 2.9z"/></svg>
       
     </span>
     <nav>
       
+        <a href="mailto:101231815+clearzer0@users.noreply.github.com">AppleSheep</a>, 
         <a href="mailto:534310154@qq.com">ClearZer0</a>
     </nav>
   </span>

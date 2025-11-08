@@ -784,33 +784,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#module" class="md-nav__link">
-    <span class="md-ellipsis">
-      Module 类
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#everestyaml" class="md-nav__link">
-    <span class="md-ellipsis">
-      everest.yaml
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      最后一步
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1110,33 +1083,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#module" class="md-nav__link">
-    <span class="md-ellipsis">
-      Module 类
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#everestyaml" class="md-nav__link">
-    <span class="md-ellipsis">
-      everest.yaml
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      最后一步
-    </span>
-  </a>
   
 </li>
       
@@ -3725,33 +3671,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#module" class="md-nav__link">
-    <span class="md-ellipsis">
-      Module 类
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#everestyaml" class="md-nav__link">
-    <span class="md-ellipsis">
-      everest.yaml
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      最后一步
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -3908,179 +3827,52 @@
 <code>位置</code> 我们需要改到蔚蓝的 <code>Mods</code> 目录下, 例如 <code>C:\Program Files\steam\steamapps\Celeste\Mods</code>.   <br />
 填写完成后我们还需要勾选 <code>将解决方案和项目放在同一目录中</code>.</p>
 <p>后面的项目配置基本与外部模板一致, 除了 <code>Celeste 所在的目录</code>. 这项已经在上一步的 <code>位置</code> 填写过了所以不需要再填写.</p>
-<h2 id="module">Module 类</h2>
-<p>就像我们的经典的控制台 C# 应用程序一样有个 <code>Main</code> 方法, 我们的蔚蓝 Mod 也有一个类似的东西, 
-那就是 Everest 提供给我们的 <code>EverestModule</code> 类.<br />
-那么, 现在打开你的 <code>MyCelesteModModule.cs</code> 那个文件, 你应该会看到类似结构这样的代码:
-<div class="language-cs highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">namespace</span><span class="w"> </span><span class="nn">MyCelesteMod</span><span class="p">;</span>
-
-<span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">MyCelesteModModule</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">EverestModule</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Load</span><span class="p">()</span>
-<span class="w">    </span><span class="p">{</span>
-
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Unload</span><span class="p">()</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div></td></tr></table></div>
-在开头我们声明了命名空间, 接下来我们声明了一个类, 然后让它继承于 <code>EverestModule</code>, 注意这个类是抽象的, 它要求我们实现的两个方法分别为 <code>Load</code> 与 <code>Unload</code>.<br />
-这两个方法很简单:</p>
-<ul>
-<li><code>Load</code> 方法在你的 mod 被加载时调用.</li>
-<li><code>Unload</code> 方法在你的 mod 被卸载时调用.</li>
-</ul>
-<p>通常我们会在 <code>Load</code> 方法里加载我们需要的资源, 进行适当的初始化, 在 <code>Unload</code> 方法里释放我们的资源.<br />
-在这里为了明显可见, 我们在 <code>Load</code> 方法里通过一个蔚蓝中的类 <code>Logger</code> 打印出了一句 "Hello World".</p>
-<details class="note">
-<summary>如果你好奇 <code>Logger.Log</code> 这个方法你可以展开来了解</summary>
-<p><code>Logger</code> 是一个蔚蓝底层引擎 <code>Monocle</code> 的一个工具类, 它帮助你打印输出一些调试信息,
-通常这些信息会被打印进控制台的同时写入游戏的 <code>log.txt</code> 文件中, 
-这也就解释了为什么你遇到各种问题时别人总要求你发送你的 <code>log.txt</code>.<br />
-<code>Logger.Log</code> 有两个重载, 其中一个的签名是:
-<div class="language-cs highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Log</span><span class="p">(</span><span class="n">LogLevel</span><span class="w"> </span><span class="n">logLevel</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">tag</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">str</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div>
-它会以 <code>logLevel</code> 的日志等级打印一个标签为 <code>tag</code> 的消息 <code>str</code>,
-另一个重载不要求你传入 <code>logLevel</code> 但会默认你的 <code>logLevel</code> 为 <code>LogLevel.Verbose</code>.
-<code>LogLevel</code> 枚举包含 <code>Verbose, Debug, Info, Warn, Error</code>.
-通常对于普通日志我们会选择 <code>Info</code>, 对于较多的调试信息选择 <code>Debug</code>,
-对于冗余的信息选择 <code>Verbose</code>, 对于一些错误但不影响游戏进行的信息选择 <code>Warn</code>, 对于一些致命性错误我们会选择 <code>Error</code>.
-一般地, 游戏只会打印 <code>Info</code> 等级及以上的日志, 你可以通过在蔚蓝启动的命令行中加入<code>--loglevel {等级}</code>来指定过滤等级.</p>
-</details>
-<h2 id="everestyaml">everest.yaml</h2>
-<p>ok, 我们前面巴拉巴拉讲了几乎三千多个字, 但是依然没有让蔚蓝加载到我们的mod, 不过别急, 这是倒数第二步了.<br />
-实际上有关 code mod 的所有代码相关的东西我们都已经做完了, 剩余的其实只是一个普通 mod 要做的 ---- 写 <code>everest.yaml</code>.
-在这里我们需要在 <code>ModFolder</code> 这个文件夹里做这件事, 那么, 在你的这个文件夹下创建 <code>everest.yaml</code> 空文件, 你的目录结构可能像是:</p>
-<ul>
-<li>ModFolder<ul>
-<li>everest.yaml</li>
-<li>MyCelesteMod.dll</li>
-<li>MyCelesteMod.pdb</li>
-</ul>
-</li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><code>.dll</code> 文件和 <code>.pdb</code> 文件仅会在你构建过项目后出现, 有时候甚至 ModFolder 目录也会在构建过后出现</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>模板创建完成后 <code>Visual Studio</code> 会自动打开我们 CodeMod 的 <code>Module.cs</code>, 感兴趣可以在这里<a href="../../basics/core_system/everest_module/">了解</a>.</p>
 </div>
-<p>好的, 现在我们打开 <code>everest.yaml</code>, 然后像一个普通的 mapper 一样填写信息:
-<div class="language-yaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MyCelesteMod</span>
-<span class="w">  </span><span class="nt">Version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1.0</span>
-<span class="w">  </span><span class="nt">DLL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MyCelesteMod.dll</span>
-<span class="w">  </span><span class="nt">Dependencies</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EverestCore</span>
-<span class="w">      </span><span class="nt">Version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.4465.0</span>
-</code></pre></div></td></tr></table></div>
-这些参数分别是:</p>
-<ul>
-<li><code>Name</code>: 你的 mod 名字</li>
-<li><code>Version</code>: 你的 mod 的版本</li>
-<li><code>DLL</code>: 如果你是 code mod 的话, 这里填入你的 code (也就是 dll 文件) 的位置, 这里我们是直接把 .dll 文件放到这个 yaml 的旁边了, 所以直接写名字就好</li>
-</ul>
-<p>最后是最底下的那个依赖, 这里我们只依赖最基础的 Everest, 版本填上你目前使用的 Everest 版本, 这里我就填写 3971 了.
-如果你的 mod 依赖 Everest Core, 你需要在这里将 <code>Everest</code> 更改为 <code>EverestCore</code>, 并将版本号填写大于 4465 的值.</p>
-<h2 id="_5">最后一步</h2>
-<p>为了方便我们的调试, 我们需要让蔚蓝打开的同时打开控制台, 这一步很简单:</p>
-<ul>
-<li>找到蔚蓝根目录下的 <code>everest-launch.txt</code>, 没有的话新建一个空的就行了</li>
-<li>向里面写入 <code>--console</code></li>
-<li>搞定, 走你!</li>
-</ul>
-<p>现在, 重新编译项目, 让 <code>msbuild</code> 带着你的 <code>ModFolder</code> 的内容前往蔚蓝 Mods 文件夹下, 启动蔚蓝, 让 Everest 找到你的 dll.<br />
-在同时启动的黑乎乎的命令行窗口上你应该能在这附近看到那句熟悉的 Hello world:
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code>(07/08/2023 21:18:59) [Everest] [Info] [core] Module DialogCutscene 1.0.0 registered.
-(07/08/2023 21:18:59) [Everest] [Info] [core] Module UpdateChecker 1.0.2 registered.
-(07/08/2023 21:18:59) [Everest] [Info] [core] Module InfiniteSaves 1.0.0 registered.
-(07/08/2023 21:18:59) [Everest] [Info] [core] Module DebugRebind 1.0.0 registered.
-(07/08/2023 21:18:59) [Everest] [Info] [core] Module RebindPeriod 1.0.0 registered.
-(07/08/2023 21:19:00) [Everest] [Info] [Everest.LuaBoot] Lua ready.
-<span class="hll">(07/08/2023 21:19:00) [Everest] [Info] [MyCelesteMod] Hello World!
-</span>(07/08/2023 21:19:00) [Everest] [Info] [core] Module MyAwesomeMod 0.1.0 registered.
-(07/08/2023 21:19:00) [Everest] [Info] [loader] Loading mods with unsatisfied optional dependencies (if any)
-FNA3D Driver: D3D11
-D3D11 Adapter: Intel(R) UHD Graphics 630
-</code></pre></div></td></tr></table></div></p>
-<!-- 肯定会有人在意怎么是 630 核显( / 我发现彩蛋了(乐 -->
-
-<p>在经过如上的配置后, 你会发现在蔚蓝启动的时候, 进行编译并复制资源时会报错, 
-这是因为 Everest 锁定占用了它们, 导致你不得不让这一切在蔚蓝关闭时进行,
-同时由于蔚蓝的重启速度不是很理想, 这大大的拉低了 mod 开发效率.<br />
-不过好在 Everest 提供了一个技术叫做 <code>code hot reload</code>,
-即热重载, 它允许你在游戏运行期间替换你的代码并重载资源, 它目前还在 wip 状态.<br />
-要开启这项功能, 首先到你的蔚蓝根目录下的 Saves 目录, 找到并打开 <code>modsettings-Everest.celeste</code> 这个文件,
-使用<code>Ctrl + F 搜索</code>找到属性 <code>CodeReload_WIP</code>, 将其更改为 <code>true</code>, 此时重新编译你的项目,
-你应该就不会再得到任何错误, 并且 Everest 也正确地热重载了你的 mod 和你的 mod 资源.</p>
 <p>这一节完成后你的目录结构大概会像是        <br />
 外部模板:</p>
 <ul>
-<li>MyCelesteMod (你项目的根目录)<ul>
-<li>ModFolder<ul>
-<li>Code<ul>
-<li>MyCelesteMod.dll</li>
-<li>MyCelesteMod.pdb</li>
+<li>📁 MyCelesteMod (你项目的根目录)<ul>
+<li>📁 ModFolder<ul>
+<li>📁 Code<ul>
+<li>⚙️ MyCelesteMod.dll</li>
+<li>⚙️ MyCelesteMod.pdb</li>
 </ul>
 </li>
-<li>everest.yaml</li>
+<li>📄 everest.yaml</li>
 </ul>
 </li>
-<li>CelesteMod.props</li>
-<li>CelesteMod.targets</li>
-<li>MyCelesteMod.csproj</li>
-<li>MyCelesteModModule.cs</li>
+<li>📄 CelesteMod.props</li>
+<li>📄 CelesteMod.targets</li>
+<li>📄 MyCelesteMod.csproj</li>
+<li>📄 MyCelesteModModule.cs</li>
 </ul>
 </li>
 </ul>
 <p>或 就地模板:</p>
 <ul>
-<li>MyCelesteMod (你项目的根目录)<ul>
-<li>everest.yaml</li>
-<li>Source<ul>
-<li>CelesteMod.props</li>
-<li>CelesteMod.targets</li>
-<li>MyCelesteMod.csproj</li>
-<li>MyCelesteModModule.cs</li>
-<li>.everestignore</li>
+<li>📁 MyCelesteMod (你项目的根目录)<ul>
+<li>📄 everest.yaml</li>
+<li>📁 Source<ul>
+<li>📄 CelesteMod.props</li>
+<li>📄 CelesteMod.targets</li>
+<li>📄 MyCelesteMod.csproj</li>
+<li>📄 MyCelesteModModule.cs</li>
+<li>📄 .everestignore</li>
 </ul>
 </li>
-<li>Code <ul>
-<li>MyCelesteMod.dll</li>
-<li>MyCelesteMod.pdb</li>
+<li>📁 Code <ul>
+<li>⚙️ MyCelesteMod.dll</li>
+<li>⚙️ MyCelesteMod.pdb</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 <p>其中正如之前所介绍的, 如果你使用外部模板的话, mod 的资源文件应该放在 <code>ModFolder</code> 中, 然后就像往常一样放置你的 mod 资源, 当你的项目在构建时它们会自动被复制.
-并且将代码文件放置在 .csproj 同目录下或嵌套文件夹下,
+并且将代码文件放置在 <code>.csproj</code> 同目录下或嵌套文件夹下,
 如果你没有更改你的项目而只更改了资源文件时你会发现编译项目会因为 "所有文件都是最新的" 而跳过编译, 而同时也会跳过我们的资源复制, 对此我们有两种解决方案:</p>
 <ul>
 <li>直接强制重新构建项目 (vs 中 "生成" -&gt; "重新生成项目")</li>
@@ -4111,7 +3903,7 @@ D3D11 Adapter: Intel(R) UHD Graphics 630
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年9月16日 17:01:55 UTC">2025年9月16日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年10月27日 02:53:27 UTC">2025年10月27日</span>
   </span>
 
     
@@ -4131,11 +3923,12 @@ D3D11 Adapter: Intel(R) UHD Graphics 630
   <span class="md-source-file__fact">
     <span class="md-icon" title="贡献者">
       
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 5.5A3.5 3.5 0 0 1 15.5 9a3.5 3.5 0 0 1-3.5 3.5A3.5 3.5 0 0 1 8.5 9 3.5 3.5 0 0 1 12 5.5M5 8c.56 0 1.08.15 1.53.42-.15 1.43.27 2.85 1.13 3.96C7.16 13.34 6.16 14 5 14a3 3 0 0 1-3-3 3 3 0 0 1 3-3m14 0a3 3 0 0 1 3 3 3 3 0 0 1-3 3c-1.16 0-2.16-.66-2.66-1.62a5.54 5.54 0 0 0 1.13-3.96c.45-.27.97-.42 1.53-.42M5.5 18.25c0-2.07 2.91-3.75 6.5-3.75s6.5 1.68 6.5 3.75V20h-13zM0 20v-1.5c0-1.39 1.89-2.56 4.45-2.9-.59.68-.95 1.62-.95 2.65V20zm24 0h-3.5v-1.75c0-1.03-.36-1.97-.95-2.65 2.56.34 4.45 1.51 4.45 2.9z"/></svg>
       
     </span>
     <nav>
       
+        <a href="mailto:101231815+clearzer0@users.noreply.github.com">AppleSheep</a>, 
         <a href="mailto:534310154@qq.com">ClearZer0</a>
     </nav>
   </span>

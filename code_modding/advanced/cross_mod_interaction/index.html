@@ -1794,15 +1794,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      依赖管理
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#modinterop" class="md-nav__link">
     <span class="md-ellipsis">
       ModInterop
@@ -1836,7 +1827,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       直接程序集引用
     </span>
@@ -3570,15 +3561,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      依赖管理
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#modinterop" class="md-nav__link">
     <span class="md-ellipsis">
       ModInterop
@@ -3612,7 +3594,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       直接程序集引用
     </span>
@@ -3683,65 +3665,11 @@
 
 <h1 id="mod">跨 Mod 交互</h1>
 <p>有时我们会希望使用其他 Mod 或提供自己 Mod 的功能, 这一节将介绍 <code>ModInterop</code> 的使用及一些常见的交互方法.</p>
-<h2 id="_1">依赖管理</h2>
-<p>在与其他 Mod 交互前, 我们需要在 <code>everest.yaml</code> 中添加相应的依赖.
-这里我们以 <code>GravityHelper</code> 为例:</p>
-<div class="language-yaml highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">everest.yaml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span>
-<span class="normal">7</span>
-<span class="normal">8</span>
-<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MyCelesteMod</span>
-<span class="w">  </span><span class="nt">Version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1.0</span>
-<span class="w">  </span><span class="nt">DLL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MyCelesteMod.dll</span>
-<span class="w">  </span><span class="nt">Dependencies</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EverestCore</span>
-<span class="w">      </span><span class="nt">Version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.4465.0</span>
-<span class="w">  </span><span class="nt">OptionalDependencies</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GravityHelper</span>
-<span class="w">      </span><span class="nt">Version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.2.20</span>
-</code></pre></div></td></tr></table></div>
-<p><code>everest.yaml</code> 中的依赖分为以下两种:</p>
-<ul>
-<li><code>Dependencies</code> 必需依赖: 会在你的 Mod 加载前完成加载.</li>
-<li><code>OptionalDependencies</code> 可选依赖: 只有在被启用时加载, 未启用则会忽略.</li>
-</ul>
-<p>通常为了保持 Mod 的轻量性与灵活性, 建议尽可能减少必需依赖的数量.
-如果一个依赖是可选的, 我们应该在使用被依赖的功能前检查它是否被成功加载.</p>
-<p>一个可能的实现如下:</p>
-<div class="language-cs highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">MyCelesteModModule.cs</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">GravityHelperLoaded</span><span class="p">;</span>
-
-<span class="k">public</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Load</span><span class="p">()</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="c1">// 获取 GravityHelperModule 的元数据</span>
-<span class="w">    </span><span class="n">EverestModuleMetadata</span><span class="w"> </span><span class="n">gravityHelperMetadata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="p">()</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="n">Name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;GravityHelper&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="n">Version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Version</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">)</span>
-<span class="w">    </span><span class="p">};</span>
-
-<span class="w">    </span><span class="c1">// 判断 GravityHelper 是否成功加载</span>
-<span class="w">    </span><span class="n">GravityHelperLoaded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Everest</span><span class="p">.</span><span class="n">Loader</span><span class="p">.</span><span class="n">DependencyLoaded</span><span class="p">(</span><span class="n">gravityHelperMetadata</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div></td></tr></table></div>
-<p>这样我们就能在使用被依赖的功能前检查 <code>GravityHelperLoaded</code> 以确保被依赖的 Mod 成功加载.</p>
 <h2 id="modinterop">ModInterop</h2>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>在与其他 CodeMod 交互前我们需要添加对应的可选依赖, 可以在<a href="../../basics/core_system/everest_module/#_2">这里</a>阅读.</p>
+</div>
 <p><code>ModInterop</code> 是 <code>MonoMod</code> 的一项十分强大的功能, 其提供了一种标准化的方式以实现不同 Mod 间的交互, 几乎可以视为我们拥有的最接近 "官方" 的 API.</p>
 <p>一个 Mod 可以通过 <code>ModExportName</code> 特性导出一组方法, 而其他的 Mod 可以通过 <code>ModImportName</code> 特性导入这些方法作为委托以调用.</p>
 <div class="admonition info">
@@ -3917,7 +3845,7 @@
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div></p>
 <p>通过这种方式, 我们可以在自己的 Mod 中访问并调用其他 Mod 提供的功能, 而不需要直接依赖该 Mod 的程序集.</p>
-<h2 id="_2">直接程序集引用</h2>
+<h2 id="_1">直接程序集引用</h2>
 <p>有时候我们需要直接使用目标Mod中的类型和方法, 但目标 Mod 并没有实现 <code>ModInterop</code> API.
 这种情况下, 我们可以直接引用其他 Mod 的程序集.</p>
 <p>下面我们介绍两种方法:</p>
@@ -3981,8 +3909,8 @@
 <p>在引用之前我们需要确认目标 Mod 在 <code>Cache</code> 中是否存在, 以上面引用的 Mod 为例. <code>Cache</code> 中应该存在:</p>
 <ul>
 <li>GravityHelper.GravityHelper.dll</li>
-<li>ExtendedVariantMode.ExtendedVariantMode.dll
-` FrostHelper.FrostTempleHelper.dll</li>
+<li>ExtendedVariantMode.ExtendedVariantMode.dll       </li>
+<li>FrostHelper.FrostTempleHelper.dll</li>
 </ul>
 <p>我们填写目标 Mod 在 <code>Cache</code> 中名称的前半段就行.</p>
 </div>
@@ -3992,7 +3920,7 @@
 完成后我们可以直接引用被剥离的程序集.</p>
 <h2 id="everestmodule">通过 EverestModule 反射获取程序集</h2>
 <p>我们也可以通过 <code>EverestModule</code> 反射动态地访问我们希望交互的 Mod 的程序集, 而无需直接引用目标 Mod 的程序集.</p>
-<p>下面我们以 <a href="https://github.com/swoolcock/GravityHelper"><code>GravityHelper</code></a> 为例:
+<p>下面我们以 <a href="https://github.com/swoolcock/GravityHelper" target="_blank"><code>GravityHelper</code></a> 为例:
 <div class="language-cs highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">MyCelesteModModule.cs</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -4032,7 +3960,7 @@
 <span class="k">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="n">PropertyInfo</span><span class="w"> </span><span class="n">IsPlayerInvertedProperty</span><span class="p">;</span>
 <span class="k">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="n">MethodInfo</span><span class="w"> </span><span class="n">SetPlayerGravityMethod</span><span class="p">;</span>
 
-<span class="k">public</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Load</span><span class="p">()</span>
+<span class="k">public</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Initialize</span><span class="p">()</span>
 <span class="p">{</span>
 <span class="w">    </span><span class="c1">// 获取 GravityHelperModule 的元数据</span>
 <span class="w">    </span><span class="n">EverestModuleMetadata</span><span class="w"> </span><span class="n">gravityHelperMetadata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="p">()</span>
@@ -4091,17 +4019,19 @@
 <span class="normal">23</span>
 <span class="normal">24</span>
 <span class="normal">25</span>
-<span class="normal">26</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="na">[CustomEntity(&quot;MyCelesteMod/SampleTrigger&quot;)]</span>
+<span class="normal">26</span>
+<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="na">[CustomEntity(&quot;MyCelesteMod/SampleTrigger&quot;)]</span>
 <span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">SampleTrigger</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Trigger</span>
 <span class="p">{</span>
-<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="nf">SampleTrigger</span><span class="p">(</span><span class="n">EntityData</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">Vector2</span><span class="w"> </span><span class="n">offset</span><span class="p">)</span>
-<span class="w">        </span><span class="p">:</span><span class="w"> </span><span class="k">base</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">offset</span><span class="p">)</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="nf">SampleTrigger</span><span class="p">(</span><span class="n">EntityData</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">Vector2</span><span class="w"> </span><span class="n">offset</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="k">base</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">offset</span><span class="p">){}</span>
+
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Added</span><span class="p">(</span><span class="n">Scene</span><span class="w"> </span><span class="n">scene</span><span class="p">)</span>
 <span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">base</span><span class="p">.</span><span class="n">Added</span><span class="p">(</span><span class="n">scene</span><span class="p">);</span>
+
 <span class="w">        </span><span class="c1">// 判断 GravityHelper 是否成功加载</span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">MyCelesteModModule</span><span class="p">.</span><span class="n">GravityHelperLoaded</span><span class="p">)</span>
-<span class="w">        </span><span class="p">{</span>
 <span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="nf">Exception</span><span class="p">(</span><span class="s">&quot;SampleTrigger requires GravityHelper as a dependency!&quot;</span><span class="p">)</span>
-<span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">OnEnter</span><span class="p">(</span><span class="n">Player</span><span class="w"> </span><span class="n">player</span><span class="p">)</span>
@@ -4148,7 +4078,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年9月18日 20:56:19 UTC">2025年9月18日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年10月27日 02:53:27 UTC">2025年10月27日</span>
   </span>
 
     
@@ -4168,11 +4098,12 @@
   <span class="md-source-file__fact">
     <span class="md-icon" title="贡献者">
       
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 5.5A3.5 3.5 0 0 1 15.5 9a3.5 3.5 0 0 1-3.5 3.5A3.5 3.5 0 0 1 8.5 9 3.5 3.5 0 0 1 12 5.5M5 8c.56 0 1.08.15 1.53.42-.15 1.43.27 2.85 1.13 3.96C7.16 13.34 6.16 14 5 14a3 3 0 0 1-3-3 3 3 0 0 1 3-3m14 0a3 3 0 0 1 3 3 3 3 0 0 1-3 3c-1.16 0-2.16-.66-2.66-1.62a5.54 5.54 0 0 0 1.13-3.96c.45-.27.97-.42 1.53-.42M5.5 18.25c0-2.07 2.91-3.75 6.5-3.75s6.5 1.68 6.5 3.75V20h-13zM0 20v-1.5c0-1.39 1.89-2.56 4.45-2.9-.59.68-.95 1.62-.95 2.65V20zm24 0h-3.5v-1.75c0-1.03-.36-1.97-.95-2.65 2.56.34 4.45 1.51 4.45 2.9z"/></svg>
       
     </span>
     <nav>
       
+        <a href="mailto:101231815+clearzer0@users.noreply.github.com">AppleSheep</a>, 
         <a href="mailto:534310154@qq.com">ClearZer0</a>
     </nav>
   </span>
