@@ -7,9 +7,8 @@ site_url: https://saplonily.top/celeste_modding_tutorial/
 
 plugins:
   - search
-  - git-authors
-  - git-revision-date-localized:
-      enable_creation_date: true
+#  - git-revision-date-localized:
+#      enable_creation_date: true
 
 theme:
   name: material
@@ -91,23 +90,16 @@ nav:
         - 调试: "code_modding/coding_setup/debug.md"
     - 基础:
         - 前言: "code_modding/basics/index.md"
-        - 游戏框架:
-            - Monocle: "code_modding/basics/framework/monocle.md"
-            - EC 架构: "code_modding/basics/framework/ec_architecture.md"
-            - 生命周期: "code_modding/basics/framework/life_cycle.md"
-        - 核心系统:
-            - EverestModule: "code_modding/basics/core_system/everest_module.md"
-            - 数据管理: "code_modding/basics/core_system/session_settings_savedata.md"
-            - 输入处理: "code_modding/basics/core_system/input_handling.md"
-            - 碰撞检测: "code_modding/basics/core_system/collision_detection.md"
-            - 资产管理: "code_modding/basics/core_system/asset_management.md"
-            - 简单渲染: "code_modding/basics/core_system/simple_rendering.md"
-            - 音频交互: "code_modding/basics/core_system/audio_interaction.md"
-        - 应用:
-            - EntityData: "code_modding/basics/application/entity_data.md"
-            - Tracker: "code_modding/basics/application/tracker.md"
-            - Flag: "code_modding/basics/application/flag.md"
-            - Tag: "code_modding/basics/application/tag.md" 
+        - Monocle: "code_modding/basics/monocle.md"
+        - EC 架构: "code_modding/basics/ec_architecture.md"
+        - 生命周期: "code_modding/basics/life_cycle.md"
+        - EverestModule: "code_modding/basics/everest_module.md"
+        - 数据管理: "code_modding/basics/session_settings_savedata.md"
+        - 输入处理: "code_modding/basics/input_handling.md"
+        - 碰撞检测: "code_modding/basics/collision_detection.md"
+        - 资产管理: "code_modding/basics/asset_management.md"
+        - 简单渲染: "code_modding/basics/simple_rendering.md"
+        - 音频交互: "code_modding/basics/audio_interaction.md"
     - 进阶:
         - 钩子:
             - 前言: "code_modding/advanced/hooks/index.md"
@@ -145,6 +137,10 @@ nav:
             - BloomPoint, VertexLight: "code_modding/wiki/component/bloompoint_vertaxlight.md"
             - SoundSource: "code_modding/wiki/component/sound_source.md"
         - Level: "code_modding/wiki/level.md"
+        - EntityData: "code_modding/wiki/entity_data.md"
+        - Tracker: "code_modding/wiki/tracker.md"
+        - Flag: "code_modding/wiki/flag.md"
+        - Tag: "code_modding/wiki/tag.md" 
     - 实战:
         - 测试地图: "code_modding/coding_challenges/test_map.md"
         - 简单自定义实体: "code_modding/coding_challenges/simple_entity.md"

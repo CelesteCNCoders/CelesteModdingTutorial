@@ -143,7 +143,7 @@ dotnet new install Saladim.CelesteModTemplate
 后面的项目配置基本与外部模板一致, 除了 `Celeste 所在的目录`. 这项已经在上一步的 `位置` 填写过了所以不需要再填写.
 
 !!!info
-    模板创建完成后 `Visual Studio` 会自动打开我们 CodeMod 的 `Module.cs`, 感兴趣可以在这里[了解](../basics/core_system/everest_module.md).
+    模板创建完成后 `Visual Studio` 会自动打开我们 CodeMod 的 `Module.cs`, 感兴趣可以在这里[了解](../basics/everest_module.md).
 
 
 这一节完成后你的目录结构大概会像是          

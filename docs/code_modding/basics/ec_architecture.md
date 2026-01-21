@@ -49,7 +49,7 @@ C --- J[Component ...];
 * `Entities`: 被添加到场景的实体列表.
 * `Paused`: 是否暂停, 暂停时不会执行实体的更新方法 `Update()`.
 * `TimeActive`: 场景开始后经过的时间, 单位是秒.
-* `Tracker`: 快速查找场景中的实体与组件, 具体可以在[这里](../application/tracker.md)阅读.
+* `Tracker`: 快速查找场景中的实体与组件, 具体可以在[这里](../wiki/tracker.md)阅读.
 * `Add(Entity entity)`: 向场景中添加实体 `entity`.
 * `Remove(Entity entity)`: 移除场景中的实体 `entity`.
 * `OnInterval(float interval)`: 每隔指定时间 `interval` 返回一次 `true`, 用于定时执行逻辑.
