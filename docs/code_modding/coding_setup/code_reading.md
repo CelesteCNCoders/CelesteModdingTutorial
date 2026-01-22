@@ -18,7 +18,7 @@
 
 - 打开它
 - 点击左上角的`文件`, `打开`
-- 选择 `Celeste.exe` (如果你使用 [core 版本的 everest](../extra/faq.md#net-core-everest), 你需要选择 `Celeste.dll`)
+- 选择 `Celeste.dll`
 - 展开蔚蓝的程序集
 - 你现在可以看到蔚蓝都有哪些类了
 - 你现在也可以看到蔚蓝都有哪些函数了
@@ -36,7 +36,7 @@
 
 - 打开它
 - 点击左上角的`文件`, `打开`
-- 选择 `Celeste.exe` (如果你使用 [core 版本的 everest](../extra/faq.md#net-core-everest), 你需要选择 `Celeste.dll`)
+- 选择 `Celeste.dll`
 - 展开蔚蓝的程序集, 浏览类和方法
 
 相应的, `ILSpy` 也提供了"分析"的功能:

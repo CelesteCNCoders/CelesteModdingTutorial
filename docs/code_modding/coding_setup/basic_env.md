@@ -3,29 +3,11 @@
 !!! note
     本节内容由手动配置重写为通过模板配置, 旧版你可以到[归档-基础环境配置](../arc/basic_env.md)中找到(不推荐)
 
-## Celeste
-
-!!! note
-    如果你不是 Windows 用户的话这一步你可以直接跳过.
-
-!!! info
-    在 [Everest Core](../extra/faq.md#net-core-everest) 版本后(Stable 版本号大于 4465)强制切换为了 FNA 版本, 如果你已是 Core 版本你可以跳过这一步.
-
-Everest 需求我们使用 FNA 版本的蔚蓝, 而 Linux 和 MacOS 上的蔚蓝已经就是 FNA 版本了, 而在 Windows 上则是 XNA 版本, 所以我们需要一些方法切换到 FNA 版本:
-
-- 在 Steam 上:  库->Celeste, 右键菜单属性->测试版->Opengl
-- 在 itch 上: 重新下载一个 `Celeste Windows OpenGL` 版本
-- 在 Epic 上: 已经是 FNA 版本了
-
-!!! note
-    Everest 会在运行时将你以 FNA 版本制作的 mod 重链接为 XNA, 所以你不是很需要在意这俩的差距  
-    注意更换版本后会变回原版, 你需要重新安装 Everest
-
 ## C# 编程能力 与 开发环境
 
 因为我们是 Code Mod, 嗯, 那么写一些代码是必不可少的, 蔚蓝是使用 `C#` 基于 `.NET Framework 4.5.2` 来制作的, 那么学习 `C#` 当然是必不可少的.  
 !!! info
-    在 Everest Core 版本上蔚蓝被迁移到了 `.NET 7` 上, 不过基于旧框架的 mod 会尽可能地被 Everest 自动转换为基于新框架的 mod.
+    在 Everest Core 版本上蔚蓝被迁移到了 `.NET 8` 上, 不过基于旧框架的 mod 会尽可能地被 Everest 自动转换为基于新框架的 mod.
 !!! info
     理论上所有 **.NET 系**语言比如 `VB.NET` `F#` 都可以, 不过为了方便起见我们还是使用 C#.
 

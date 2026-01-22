@@ -57,4 +57,5 @@
 
 ### 2026
 - 重构项目结构
-- how
+- 更新 [测试地图](../coding_challenges/test_map.md) 至 Everest 5577
+- 

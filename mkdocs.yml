@@ -95,7 +95,7 @@ nav:
         - 生命周期: "code_modding/basics/life_cycle.md"
         - EverestModule: "code_modding/basics/everest_module.md"
         - 数据管理: "code_modding/basics/session_settings_savedata.md"
-        - 输入处理: "code_modding/basics/input_handling.md"
+        - 输入获取: "code_modding/basics/input_handling.md"
         - 碰撞检测: "code_modding/basics/collision_detection.md"
         - 资产管理: "code_modding/basics/asset_management.md"
         - 简单渲染: "code_modding/basics/simple_rendering.md"
@@ -148,7 +148,6 @@ nav:
         - 简单贴图: "code_modding/coding_challenges/simple_texturing.md"
         - 简单自定义组件: "code_modding/coding_challenges/simple_component.md"
     - 额外:
-        - FAQ: "code_modding/extra/faq.md"
         - XML:
           - XML 简单介绍: "code_modding/extra/xml/xml_speedrun.md"
         - Lua:
@@ -173,4 +172,3 @@ nav:
     - 杂项:
         - ChangeLog: "code_modding/misc/change_log.md"
         - ToDoList: "code_modding/misc/to_do_list.md"
-#

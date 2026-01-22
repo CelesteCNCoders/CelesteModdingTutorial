@@ -55,7 +55,7 @@ ShowManualTextOnDebugMap: true
 CodeReload_WIP: true
 UseInGameCrashHandler: true
 CrashHandlerAlwaysTeabag: false
-CurrentVersion: 1.4465.0
+CurrentVersion: 1.5577.0
 CurrentBranch: updater_src_stable
 LogLevels: {}
 
