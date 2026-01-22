@@ -2,6 +2,7 @@
   <Import Project="CelesteMod.props" />
 
   <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
     <RootNamespace>Celeste.Mod.CelesteModTutorial</RootNamespace>
     <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
