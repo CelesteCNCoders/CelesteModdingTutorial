@@ -2,7 +2,7 @@ local trigger = {}
 
 trigger.name = "CelesteModTutorial/SetPassByRefillDashesTrigger"
 trigger.placements = {
-    name = "normal",
+    name = "SetPassByRefillDashesTrigger",
     data = {
         width = 16,
         height = 16,
