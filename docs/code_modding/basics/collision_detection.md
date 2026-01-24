@@ -1,7 +1,10 @@
 # 碰撞检测
 
-碰撞检测是游戏逻辑的重要组成部分, 比如想知道玛德琳有没有撞到刺或是会不会突然神秘穿墙都依赖碰撞检测.     
-这一节会简单介绍一下.
+碰撞检测是游戏逻辑的重要组成部分, 我们通过一个个不同的形状(矩形, 圆形)来表示一个对象的 "碰撞" 区域,
+通过计算这些形状是否有重叠来判断两个对象之间是否 "碰到" 了.
+所以像是玛德琳有没有撞到刺这种情况本质上就是判断玛德琳的碰撞箱是否跟刺的碰撞箱产生了重叠,
+
+这一节会简单介绍一下蔚蓝的碰撞箱与使用.
 
 ## Collider
 
@@ -50,7 +53,7 @@ public class SampleEntity : Entity
 ```
 
 !!!info
-    实际使用不要设置这么小的碰撞箱, <del>基本没什么用</del>, 一般大小都是以 8 为倍数或 8 以上.
+    碰撞箱的大小一般都是以 8 为倍数或 8 以上, <del>虽然你想设置多大都可以</del>.
 
 ### Circle
 
@@ -67,13 +70,13 @@ public Circle(float radius, float x = 0f, float y = 0f)
 
 ### Grid
 
-`Grid` 是瓦片网格碰撞箱, 一般用于高效处理大量规则排列的瓦片碰撞, 比如地形 `SolidTiles`.
+`Grid` 是瓦片网格碰撞箱, 一般用于高效处理大量规则排列的瓦片碰撞, 比如常见的砖块 `SolidTiles` 就是以 `Grid` 作为碰撞箱的.
 
 <del>偷个懒因为基本不会用到</del>
 
 ### ColliderList
 
-`ColliderList` 用于组合多个碰撞箱, 让一个实体可以拥有复杂的碰撞区域, 比如圆刺.
+`ColliderList` 用于组合多个碰撞箱, 让一个实体可以拥有复杂的碰撞区域.
 
 `ColliderList` 的构造函数是:
 
@@ -91,8 +94,7 @@ public CrystalStaticSpinner(Vector2 position)
     Position = position;
 
     // 组合两个不同的碰撞箱
-    // 一个是半径为 6 的 Circle
-    // 一个是长为 16, 宽为 4, 偏移为 (-8, -3) 的 Hitbox
+    // CrystalStaticSpinner 的碰撞箱由 Circle 与 Hitbox 组成
     Collider = new ColliderList(new Circle(6f), new Hitbox(16f, 4f, -8f, -3f));
 }
 ```
@@ -102,13 +104,7 @@ public CrystalStaticSpinner(Vector2 position)
 设置好碰撞箱后, 我们就可以进行碰撞检测了.
 比如检测玛德琳是否碰到刺, 实体是否碰到墙等. 都需要用到碰撞检测方法.
 
-`Entity` 内有一个属性 `bool Collidable`, 用于表示该实体是否可碰撞.
-设置为 `false` 的话所有关于该实体的碰撞检测都会返回 `false`.
-
-!!!info
-    需要注意有部分实体的 `Collidable` 总是为 `false`, 比如 `SeekerBarrier`. 对它们进行碰撞检测通常需要把 `Collidable` 设为 `true`, 检测完成后再设为 `false`.
-
-`Entity` 内也自带了一些碰撞检测方法, 下面介绍一些常用的:
+`Entity` 内自带了一些碰撞检测方法, 下面介绍一些常用的:
 
 ### CollideCheck
 
@@ -131,7 +127,13 @@ if (CollideCheck<Player>())
 }
 ```
 
+`Entity` 内有一个属性 `bool Collidable`, 用于表示该实体是否可碰撞.
+设置为 `false` 的话所有关于该实体的碰撞检测都会返回 `false`, 也会让下面获取碰撞到实体的方法获取不到.
+
 !!!info
+    需要注意有部分实体的 `Collidable` 总是为 `false`, 比如 `SeekerBarrier`. 对它们进行碰撞检测通常需要把 `Collidable` 设为 `true`, 检测完成后再设为 `false`.
+
+???info "Grid 与 Circle 的碰撞"
     需要注意一下 `Grid` 与 `Circle` 的碰撞检测总返回 `false`, <del>Monocle 这样写的.jpg</del>.      
     一定要进行检测的话可以通过钩取 `On.Monocle.Grid.Collide_Circle` 进行实现. 比如:
 

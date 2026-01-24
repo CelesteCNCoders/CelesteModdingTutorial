@@ -31,7 +31,8 @@ public static VirtualButton CrouchDash;
 比如你可以把键盘的 ++c++ 与 ++space++ 或是其他奇怪的按键都映射至跳跃.
 
 我们可以检查它们的这些属性获取输入状态:     
-- `Check`: 检查按键在当前帧是否被按下, 持续检测, 只要按键被按下就会返回 `true`.                 
+
+- `Check`: 检查按键在当前帧是否被按着, 持续检测, 只要按键被按着就会返回 `true`.                 
 - `Pressed`: 检查按键在当前帧是否被按下, 瞬间检测, 只有按键被第一次按下的那帧会返回 `true`.        
 - `Released`: 检查按键在当前帧是否被释放, 瞬间检测, 只有按键被释放的那帧会返回 `true`.        
 
@@ -60,7 +61,8 @@ public class SampleTrigger : Trigger
     蔚蓝中的预输入, 也就是输入缓冲是通过 `float VirtualButton.BufferTime` 实现的.       
     通常蔚蓝预定义的按键的输入缓冲都是 `0.08f`, 约为 5 帧. 
 
-    有时候我们会希望在检测到按键按下后清空输入缓冲以防止重复触发或逻辑冲突, 可以调用这些方法:       
+    有时候我们会希望在检测到按键按下后清空输入缓冲以防止重复触发或逻辑冲突, 可以调用这些方法:     
+
     - `ConsumeBuffer()`: 把 `BufferTime` 设为 `0f` 清空输入缓冲.         
     - `ConsumePress()`: 把 `BufferTime` 设为 `0f` 清空输入缓冲, 并让当前帧后续所有的瞬间按键检测都返回 `false`.
 
@@ -133,4 +135,5 @@ if (MyCelesteModModule.Settings.SampleBinding.Pressed)
 ![sample_binding](images/input_handling/sample_binding.png)
 
 !!!info
-    此外静态类 `TextInput` 提供了监听原始键盘输入的事件 `event Action<char> OnInput`, 有需要可以订阅这个事件.
+    此外静态类 `TextInput` 提供了监听原始键盘输入的事件 `event Action<char> OnInput`.       
+    比如你想要实现一个虚拟键盘, 可能需要获取用户输入的每一个字符, 那么就可以订阅这个事件.
