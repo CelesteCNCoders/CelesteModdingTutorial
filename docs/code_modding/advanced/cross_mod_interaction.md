@@ -5,7 +5,7 @@
 ## ModInterop
 
 !!!info
-    在与其他 CodeMod 交互前我们需要添加对应的可选依赖, 可以在[这里](../basics/core_system/everest_module.md#_2)阅读.
+    在与其他 CodeMod 交互前我们需要添加对应的可选依赖, 可以在[这里](../basics/everest_module.md#_2)阅读.
 
 `ModInterop` 是 `MonoMod` 的一项十分强大的功能, 其提供了一种标准化的方式以实现不同 Mod 间的交互, 几乎可以视为我们拥有的最接近 "官方" 的 API.
 

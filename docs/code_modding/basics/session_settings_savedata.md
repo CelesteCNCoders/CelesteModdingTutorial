@@ -1,6 +1,7 @@
 # 数据管理
 
-<del>这部分内容在 Everest Wiki 里是在配置环境的同时说的, 我个人认为应该推后一点但是似乎现在推后的有点过头.</del>
+!!!info
+    此文档需要重写
 
 你应该还记得我们最开始的那个继承于 `EverestModule` 的类 `MyCelesteModModule`, 到目前为止我们只使用了它的 `Load` 方法和 `Unload` 方法用于加载初始化我们的钩子.
 当然, 这肯定是不止的, 那么这一节将会聚焦于 `EverestModule` 的更多的内容.

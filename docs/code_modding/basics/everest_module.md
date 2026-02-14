@@ -92,7 +92,7 @@ graph LR
     必需依赖未满足时, Mod 会加载失败.   
     可选依赖未满足时, Mod 还是可以正常加载.
 
-我们通常会在需要[与其他 CodeMod 交互](../../advanced/cross_mod_interaction.md)时声明可选依赖, 比如:
+我们通常会在需要[与其他 CodeMod 交互](../advanced/cross_mod_interaction.md)时声明可选依赖, 比如:
 
 ```yaml title="everest.yaml"
 - Name: MyCelesteMod
