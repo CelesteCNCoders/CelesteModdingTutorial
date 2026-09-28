@@ -14,8 +14,8 @@
 - `Y`：房间纵坐标（单位 tile）
 - `Width`：房间宽度
 - `Height`：房间高度
-- `Camera Offset X`：房间默认的镜头横坐标偏移（单位 tile）
-- `Camera Offset Y`：房间默认的镜头纵坐标偏移（单位 tile）
+- `Camera Offset X`：房间默认的镜头横坐标偏移（单位 48px）
+- `Camera Offset Y`：房间默认的镜头纵坐标偏移（单位 32px）
 - `Wind Pattern`：房间起始刮风的类型
 - `Underwater`：整个房间是否都在水下
 - `Space`：房间是否具有 8AB 结尾的低重力和上下贯通效果
